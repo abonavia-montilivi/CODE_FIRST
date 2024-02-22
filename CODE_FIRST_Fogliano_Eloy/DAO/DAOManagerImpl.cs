@@ -14,6 +14,24 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             this.context = context;
         }
 
+        public void AddEmployees(string textFile)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void AddOffices(string textFile)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProductLines(string textFile)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProducts(string textFile)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
