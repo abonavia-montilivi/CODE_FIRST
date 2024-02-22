@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace CODE_FIRST_Fogliano_Eloy.DAO
 {
-    internal interface IDAOManager
+    public interface IDAOManager
     {
+        public void AddCustomers(string file);
+		public void AddPayments(string file);
+		public void AddCOrders(string file);
+		public void AddOrderDetails(string file);
 
-    }
+
+
+	}
 }
