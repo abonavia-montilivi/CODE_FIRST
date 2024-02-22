@@ -13,24 +13,24 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         {
             this.context = context;
 
-            using (var context = new ShopDbContext())
+            //using (context)
             {
 
                 // Query customers from France order by credit limit
-                var customersWithName = context.Customers.Where(c => c.country == "France").OrderBy(c => c.creditLimit).ToList();
+                //var customersWithName = context.Customers.Where(c => c.Country == "France").OrderBy(c => c.CreditLimit).ToList();
 
                 //filtering and sorting
-                var filteredProducts = context.Products.Where(p => p.quantityStock >= 2000 && p.msrp < 100).OrderBy(p => p.productName).ToList();
+                var filteredProducts = context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
 
                 //joining entities
                 var customerPayments = context.Customers
                     .Join(context.Payments,
-                    customer => customer.customerNumber,
-                    payment => payment.customerNumber,
+                    customer => customer.CustomerNumber,
+                    payment => payment.CustomerNumber,
                     (customer, payment) => new
                     {
-                        CustomerName = customer.customerFirstName,
-                        PaymentAmount = payment.amount
+                        CustomerName = customer.CustomerName,
+                        PaymentAmount = payment.Amount
 
                     })
                     .ToList();
@@ -38,7 +38,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                 //agregation and grouping
 
                 var employeesPerOffice = context.Employees
-                  .GroupBy(e => e.officeCode)
+                  .GroupBy(e => e.Office)
                   .Select(o => new
                   {
                       OfficeCode = o.Key,
@@ -49,6 +49,44 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
             }
         }
+        public List<MODEL.Customer> CustomersFromFrance()
+        {
+			// Query customers from France order by credit limit
+			return context.Customers.Where(c => c.Country == "France").OrderBy(c => c.CreditLimit).ToList();
+		}
+        public List<MODEL.Product> ProductsByQuantityAndMsrp()
+        {
+			//filtering and sorting
+			return context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
+		}
+        public Object PaymentsPerCustomer()
+        {
+			//joining entities
+			return context.Customers
+					.Join(context.Payments,
+					customer => customer.CustomerNumber,
+					payment => payment.CustomerNumber,
+					(customer, payment) => new
+					{
+						CustomerName = customer.CustomerName,
+						PaymentAmount = payment.Amount
+
+					})
+					.ToList();
+		}
+
+        public Object EmployeesPerOffice()
+        {
+			//agregation and grouping
+            return context.Employees
+				  .GroupBy(e => e.Office)
+				  .Select(o => new
+				  {
+					  OfficeCode = o.Key,
+					  EmployeeCount = o.Count()
+				  })
+				 .ToList();
+		}
 
 		public void AddOrders(string file)
 		{
