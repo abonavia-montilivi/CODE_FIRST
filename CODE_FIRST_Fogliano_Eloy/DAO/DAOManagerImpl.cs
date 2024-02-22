@@ -14,6 +14,15 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             this.context = context;
         }
 
+		public void AddCOrders(string file)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddCustomers(string file)
+		{
+			throw new NotImplementedException();
+		}
         public void AddEmployees(string textFile)
         {
             throw new NotImplementedException();
@@ -24,6 +33,16 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             throw new NotImplementedException();
         }
 
+		public void AddOrderDetails(string file)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddPayments(string file)
+		{
+			throw new NotImplementedException();
+		}
+	}
         public void AddProductLines(string textFile)
         {
             throw new NotImplementedException();
