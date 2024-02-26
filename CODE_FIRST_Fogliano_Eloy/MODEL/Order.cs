@@ -10,7 +10,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Order
     {
-        public Order(int orderNumber, DateTime orderDate, DateTime requieredDate, DateTime shippedDate, string status, string comments, Customer customer) 
+        public Order(int orderNumber, DateTime orderDate, DateTime requieredDate, DateTime shippedDate, string status, string comments, int customer) 
         {
             this.OrderNumber = orderNumber;
             this.OrderDate = orderDate;
@@ -18,7 +18,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
             this.ShippedDate = shippedDate;
             this.Status = status;
             this.Comments = comments;
-            this.Customer = customer;
+            this.CustomerKey = customer;
         }
         [Key]
         [Column(TypeName = "int(11)")]
@@ -34,6 +34,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         [Column(TypeName = "text")]
         public string Comments { get; set; }
         public Customer Customer { get; set; }
+        public int CustomerKey { get; set; }
 
         public ICollection<OrderDetail> OrderDetails { get; set; }
     }

@@ -10,11 +10,10 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class OrderDetail
     {
-        public OrderDetail(int orderNumber, Order order, string ProductCode, Product product, int quantityOrdered, double priceEach, int orderLineNumber) 
+        public OrderDetail(int orderNumber, string productCode, int quantityOrdered, double priceEach, int orderLineNumber) 
         {
             this.OrderNumber = orderNumber;
-            this.Order = order;
-            this.Product = product;
+            this.ProductCode = productCode;           
             this.QuantityOrdered = quantityOrdered;
             this.PriceEach = priceEach;
             this.OrderLineNumber = orderLineNumber;

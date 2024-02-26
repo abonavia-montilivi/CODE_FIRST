@@ -12,7 +12,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
     {
         public Payment(int CustomerNumber, string CheckNumber, DateTime PaymentDate, double Amount)
         {
-            this.CustomerNumber = CustomerNumber;
+            this.CustomerNumber = CustomerNumber;            
             this.CheckNumber = CheckNumber;
             this.PaymentDate = PaymentDate;
             this.Amount = Amount;
