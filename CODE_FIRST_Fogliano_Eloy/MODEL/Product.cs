@@ -10,10 +10,18 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Product
     {
-        public Product() 
+        public Product(string ProductCode, string ProductName, ProductLine ProductLine, string ProductScale, string ProductVendor, string ProductDescription, int QuantityInStock, double BuyPrice, double MSRP) 
         {
-        
-        }
+			this.ProductCode = ProductCode;
+            this.ProductName = ProductName;
+            this.ProductLine = ProductLine;
+            this.ProductScale = ProductScale;
+            this.ProductVendor = ProductVendor;
+            this.ProductDescription = ProductDescription;
+            this.QuantityInStock = QuantityInStock;
+            this.BuyPrice = BuyPrice;
+            this.MSRP = MSRP;
+		}
 
         [Key]
         [Column(TypeName = "varchar(15)")]

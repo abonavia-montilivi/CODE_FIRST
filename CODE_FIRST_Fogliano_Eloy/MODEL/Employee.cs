@@ -10,6 +10,17 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Employee
     {
+        public Employee(int employeeNumber, string lastName, string firstName, string extension, string email, Office office, Employee reportsTo, string jobTittle) 
+        {
+            this.EmployeeNumber = employeeNumber;
+            this.LastName = lastName;
+            this.FirstName = firstName;
+            this.Extension = extension;
+            this.Email = email;
+            this.Office = office;
+            this.ReportsTo = reportsTo;            
+            this.JobTitle = jobTittle;
+        }
         [Key]
         [Column(TypeName = "int(11)")]
         public int EmployeeNumber { get; set; }

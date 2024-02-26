@@ -10,6 +10,16 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Order
     {
+        public Order(int orderNumber, DateTime orderDate, DateTime requieredDate, DateTime shippedDate, string status, string comments, Customer customer) 
+        {
+            this.OrderNumber = orderNumber;
+            this.OrderDate = orderDate;
+            this.RequiredDate = requieredDate;
+            this.ShippedDate = shippedDate;
+            this.Status = status;
+            this.Comments = comments;
+            this.Customer = customer;
+        }
         [Key]
         [Column(TypeName = "int(11)")]
         public int OrderNumber { get; set; }

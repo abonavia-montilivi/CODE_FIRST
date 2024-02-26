@@ -10,6 +10,14 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Payment
     {
+        public Payment(int CustomerNumber, Customer Customer, string CheckNumber, DateTime PaymentDate, double Amount)
+        {
+            this.CustomerNumber = CustomerNumber;
+            this.Customer = Customer;
+            this.CheckNumber = CheckNumber;
+            this.PaymentDate = PaymentDate;
+            this.Amount = Amount;
+        }
         [Key]
         [ForeignKey("Customer")]
         public int CustomerNumber { get; set; }

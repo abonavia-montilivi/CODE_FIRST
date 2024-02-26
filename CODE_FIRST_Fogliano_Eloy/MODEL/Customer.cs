@@ -10,6 +10,21 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Customer
     {
+        public Customer(int CustomerNumber,string CustomerName,	string ContactLastName, string ContactFirstName, string AddressLine1, string AddressLine2, string City,	string State, string PostalCode, string Country, Employee SalesRep,	double CreditLimit) 
+        {
+            this.CustomerNumber = CustomerNumber;
+            this.CustomerName = CustomerName;
+            this.ContactLastName = ContactLastName;
+            this.ContactFirstName = ContactFirstName;
+            this.AddressLine1 = AddressLine1;
+            this.AddressLine2 = AddressLine2;
+            this.City = City;
+            this.State = State;
+            this.PostalCode = PostalCode;
+            this.Country = Country;
+            this.SalesRep = SalesRep;
+            this.CreditLimit = CreditLimit;		
+	    }
         [Key]
         [Column(TypeName = "int")]
         public int CustomerNumber { get; set; }

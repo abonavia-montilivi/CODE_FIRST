@@ -18,16 +18,23 @@ namespace CODE_FIRST_Fogliano_Eloy
     public partial class MainWindow : Window
     {
         private MODEL.ClassicModelsDBContext modelDBContext = new MODEL.ClassicModelsDBContext();
-        private IDAOManager dAOManager = null;
+        private IDAOManager daoManager = null;
         public MainWindow()
         {
             InitializeComponent();
             DAOManagerFactory factory = new DAOManagerFactory();
-            dAOManager = factory.CreateDAO(modelDBContext);
-            dAOManager.AddProductLines("PRODUCTLINES.csv");
+            daoManager = factory.CreateDAO(modelDBContext);
+            daoManager.AddProductLines("PRODUCTLINES.csv");
+            daoManager.AddProducts("PRODUCTS.csv");
+            daoManager.AddOffices("OFFICES.csv");
+            daoManager.AddEmployees("EMPLOYEES.csv");
+            daoManager.AddCustomers("CUSTOMERS.csv");
+            daoManager.AddPayments("PAYMENTS.csv");
+            daoManager.AddOrders("ORDERS.csv");
+            daoManager.AddOrderDetails("ORDERDETAILS.csv");
 
 
 
-        }
+		}
     }
 }
