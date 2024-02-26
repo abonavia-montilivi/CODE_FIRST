@@ -16,9 +16,9 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         public decimal Price { get; set; }
 
         [ForeignKey("CustomerId")]
-        public virtual Customers Customer { get; set; }
+        public virtual Customer Customers { get; set; }
         [ForeignKey("ProductCode")]
-        public virtual Products Product { get; set; }
+        public virtual Product Products { get; set; }
     }
 
 
