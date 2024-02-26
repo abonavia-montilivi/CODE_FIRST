@@ -3,14 +3,16 @@ using System;
 using CODE_FIRST_Fogliano_Eloy.MODEL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CODE_FIRST_Fogliano_Eloy.Migrations
 {
     [DbContext(typeof(ClassicModelsDBContext))]
-    partial class ClassicModelsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240226174512_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,7 +221,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CheckNumber")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(10,2)");

@@ -11,7 +11,6 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
     public class Office
     {
         [Key]
-        [Column(TypeName = "varchar(10)")]
         public string OfficeCode { get; set; }
         [Column(TypeName = "varchar(50)")]
         public string City { get; set; }

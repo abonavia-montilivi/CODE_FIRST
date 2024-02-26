@@ -11,7 +11,6 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
     public class ProductLine
     {
         [Key]
-        [Column(TypeName = "varchar(50)")]
         public string productLine { get; set; }
         [Column(TypeName = "varchar(4000)")]
         public string TextDescription { get; set; }

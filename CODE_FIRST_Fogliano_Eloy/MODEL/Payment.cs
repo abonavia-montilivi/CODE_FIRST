@@ -16,6 +16,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         public Customer Customer { get; set; }
 
         [Key]
+        [Column(TypeName = "varchar(50)")]
         public string CheckNumber { get; set; }
         [Column(TypeName = "date")]
         public DateTime PaymentDate { get; set; }

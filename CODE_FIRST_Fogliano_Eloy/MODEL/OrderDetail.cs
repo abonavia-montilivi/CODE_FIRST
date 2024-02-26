@@ -12,15 +12,12 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
     {
         [Key]
         [ForeignKey("Order")]
-        [Column(TypeName = "int(11)")]
         public int OrderNumber { get; set; }
         public Order Order { get; set; }
 
         [Key]
         [ForeignKey("Product")]
-        [Column(TypeName = "varchar(15)")]
         public string ProductCode { get; set; }
-        [ForeignKey("productCode")]
         public Product Product { get; set; }
         [Column(TypeName = "int(11)")]
         public int QuantityOrdered { get; set; }

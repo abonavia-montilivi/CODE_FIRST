@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CODE_FIRST_Fogliano_Eloy.Migrations
 {
     [DbContext(typeof(ClassicModelsDBContext))]
-    [Migration("20240222112601_first")]
-    partial class first
+    [Migration("20240226175112_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,45 +27,45 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
 
                     b.Property<string>("AddressLine1")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("AddressLine2")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("ContactFirstName")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("ContactLastName")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<double>("CreditLimit")
-                        .HasColumnType("double");
+                    b.Property<decimal>("CreditLimit")
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("CustomerName")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("SalesRepEmployeeNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("int(11)");
 
                     b.Property<string>("State")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("CustomerNumber");
 
@@ -78,34 +78,34 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     b.Property<int>("EmployeeNumber")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int(11)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Extension")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("JobTitle")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("OfficeCode")
                         .IsRequired()
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<int>("ReportsToEmployeeNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("int(11)");
 
                     b.HasKey("EmployeeNumber");
 
@@ -123,35 +123,35 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
 
                     b.Property<string>("AddressLine1")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("AddressLine2")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("State")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Territory")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("OfficeCode");
 
@@ -162,27 +162,27 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     b.Property<int>("OrderNumber")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int(11)");
 
                     b.Property<string>("Comments")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("text");
 
                     b.Property<int>("CustomerNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("RequiredDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("ShippedDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("date");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("OrderNumber");
 
@@ -194,19 +194,19 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
             modelBuilder.Entity("CODE_FIRST_Fogliano_Eloy.MODEL.OrderDetail", b =>
                 {
                     b.Property<int>("OrderNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("int(11)");
 
                     b.Property<string>("ProductCode")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<int>("OrderLineNumber")
-                        .HasColumnType("int");
+                    b.Property<short>("OrderLineNumber")
+                        .HasColumnType("smallint(6)");
 
-                    b.Property<double>("PriceEach")
-                        .HasColumnType("double");
+                    b.Property<decimal>("PriceEach")
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("QuantityOrdered")
-                        .HasColumnType("int");
+                        .HasColumnType("int(11)");
 
                     b.HasKey("OrderNumber", "ProductCode");
 
@@ -221,13 +221,13 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CheckNumber")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("double");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("date");
 
                     b.HasKey("CustomerNumber", "CheckNumber");
 
@@ -237,35 +237,34 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
             modelBuilder.Entity("CODE_FIRST_Fogliano_Eloy.MODEL.Product", b =>
                 {
                     b.Property<string>("ProductCode")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<double>("BuyPrice")
-                        .HasColumnType("double");
+                    b.Property<decimal>("BuyPrice")
+                        .HasColumnType("decimal(10,2)");
 
-                    b.Property<double>("MSRP")
-                        .HasColumnType("double");
+                    b.Property<decimal>("MSRP")
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("ProductDescription")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(70)");
 
                     b.Property<string>("ProductScale")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("ProductVendor")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<int>("QuantityInStock")
-                        .HasColumnType("int");
+                    b.Property<short>("QuantityInStock")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("productLine")
-                        .IsRequired()
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.HasKey("ProductCode");
@@ -282,15 +281,15 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
 
                     b.Property<string>("HtmlDescription")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("mediumtext");
 
-                    b.Property<string>("Image")
+                    b.Property<byte[]>("Image")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("mediumblob");
 
                     b.Property<string>("TextDescription")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(4000)");
 
                     b.HasKey("productLine");
 
@@ -358,9 +357,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     b.HasOne("CODE_FIRST_Fogliano_Eloy.MODEL.ProductLine", "ProductLine")
                         .WithMany("Products")
-                        .HasForeignKey("productLine")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("productLine");
                 });
 #pragma warning restore 612, 618
         }

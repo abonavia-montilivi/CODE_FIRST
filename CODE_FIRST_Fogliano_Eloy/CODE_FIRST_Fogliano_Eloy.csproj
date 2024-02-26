@@ -13,6 +13,30 @@
     <Compile Remove="Migrations\20240222112156_firstB.Designer.cs" />
     <Compile Remove="Migrations\20240222113334_second.cs" />
     <Compile Remove="Migrations\20240222113334_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226171630_second.cs" />
+    <Compile Remove="Migrations\20240226171630_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226172024_second.cs" />
+    <Compile Remove="Migrations\20240226172024_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226172115_second.cs" />
+    <Compile Remove="Migrations\20240226172115_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226172226_second.cs" />
+    <Compile Remove="Migrations\20240226172226_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226172315_second.cs" />
+    <Compile Remove="Migrations\20240226172315_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226172713_second.cs" />
+    <Compile Remove="Migrations\20240226172713_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226172850_second.cs" />
+    <Compile Remove="Migrations\20240226172850_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226173041_second.cs" />
+    <Compile Remove="Migrations\20240226173041_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226173230_second.cs" />
+    <Compile Remove="Migrations\20240226173230_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226173544_second.cs" />
+    <Compile Remove="Migrations\20240226173544_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226174835_second.cs" />
+    <Compile Remove="Migrations\20240226174835_second.Designer.cs" />
+    <Compile Remove="Migrations\20240226175018_second.cs" />
+    <Compile Remove="Migrations\20240226175018_second.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

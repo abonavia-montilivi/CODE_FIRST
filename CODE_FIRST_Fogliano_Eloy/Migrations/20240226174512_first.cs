@@ -13,14 +13,14 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 columns: table => new
                 {
                     OfficeCode = table.Column<string>(nullable: false),
-                    City = table.Column<string>(nullable: false),
-                    Phone = table.Column<string>(nullable: false),
-                    AddressLine1 = table.Column<string>(nullable: false),
-                    AddressLine2 = table.Column<string>(nullable: false),
-                    State = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(nullable: false),
-                    PostalCode = table.Column<string>(nullable: false),
-                    Territory = table.Column<string>(nullable: false)
+                    City = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Phone = table.Column<string>(type: "varchar(50)", nullable: false),
+                    AddressLine1 = table.Column<string>(type: "varchar(50)", nullable: false),
+                    AddressLine2 = table.Column<string>(type: "varchar(50)", nullable: false),
+                    State = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Country = table.Column<string>(type: "varchar(50)", nullable: false),
+                    PostalCode = table.Column<string>(type: "varchar(15)", nullable: false),
+                    Territory = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,9 +32,9 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 columns: table => new
                 {
                     productLine = table.Column<string>(nullable: false),
-                    TextDescription = table.Column<string>(nullable: false),
-                    HtmlDescription = table.Column<string>(nullable: false),
-                    Image = table.Column<string>(nullable: false)
+                    TextDescription = table.Column<string>(type: "varchar(4000)", nullable: false),
+                    HtmlDescription = table.Column<string>(type: "mediumtext", nullable: false),
+                    Image = table.Column<byte[]>(type: "mediumblob", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,15 +45,15 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    EmployeeNumber = table.Column<int>(nullable: false)
+                    EmployeeNumber = table.Column<int>(type: "int(11)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    LastName = table.Column<string>(nullable: false),
-                    FirstName = table.Column<string>(nullable: false),
-                    Extension = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    FirstName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Extension = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Email = table.Column<string>(type: "varchar(100)", nullable: false),
                     OfficeCode = table.Column<string>(nullable: false),
                     ReportsToEmployeeNumber = table.Column<int>(nullable: false),
-                    JobTitle = table.Column<string>(nullable: false)
+                    JobTitle = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,15 +76,15 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductCode = table.Column<string>(nullable: false),
-                    ProductName = table.Column<string>(nullable: false),
-                    productLine = table.Column<string>(nullable: false),
-                    ProductScale = table.Column<string>(nullable: false),
-                    ProductVendor = table.Column<string>(nullable: false),
-                    ProductDescription = table.Column<string>(nullable: false),
-                    QuantityInStock = table.Column<int>(nullable: false),
-                    BuyPrice = table.Column<double>(nullable: false),
-                    MSRP = table.Column<double>(nullable: false)
+                    ProductCode = table.Column<string>(type: "varchar(15)", nullable: false),
+                    ProductName = table.Column<string>(type: "varchar(70)", nullable: false),
+                    productLine = table.Column<string>(nullable: true),
+                    ProductScale = table.Column<string>(type: "varchar(10)", nullable: false),
+                    ProductVendor = table.Column<string>(type: "varchar(50)", nullable: false),
+                    ProductDescription = table.Column<string>(type: "text", nullable: false),
+                    QuantityInStock = table.Column<short>(type: "smallint", nullable: false),
+                    BuyPrice = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    MSRP = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,26 +94,26 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         column: x => x.productLine,
                         principalTable: "ProductLines",
                         principalColumn: "productLine",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
-                    CustomerNumber = table.Column<int>(nullable: false)
+                    CustomerNumber = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CustomerName = table.Column<string>(nullable: false),
-                    ContactLastName = table.Column<string>(nullable: false),
-                    ContactFirstName = table.Column<string>(nullable: false),
-                    AddressLine1 = table.Column<string>(nullable: false),
-                    AddressLine2 = table.Column<string>(nullable: false),
-                    City = table.Column<string>(nullable: false),
-                    State = table.Column<string>(nullable: false),
-                    PostalCode = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(nullable: false),
+                    CustomerName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    ContactLastName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    ContactFirstName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    AddressLine1 = table.Column<string>(type: "varchar(50)", nullable: false),
+                    AddressLine2 = table.Column<string>(type: "varchar(50)", nullable: false),
+                    City = table.Column<string>(type: "varchar(50)", nullable: false),
+                    State = table.Column<string>(type: "varchar(50)", nullable: false),
+                    PostalCode = table.Column<string>(type: "varchar(15)", nullable: false),
+                    Country = table.Column<string>(type: "varchar(50)", nullable: false),
                     SalesRepEmployeeNumber = table.Column<int>(nullable: false),
-                    CreditLimit = table.Column<double>(nullable: false)
+                    CreditLimit = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -130,13 +130,13 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    OrderNumber = table.Column<int>(nullable: false)
+                    OrderNumber = table.Column<int>(type: "int(11)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    OrderDate = table.Column<DateTime>(nullable: false),
-                    RequiredDate = table.Column<DateTime>(nullable: false),
-                    ShippedDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<string>(nullable: false),
-                    Comments = table.Column<string>(nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "date", nullable: false),
+                    RequiredDate = table.Column<DateTime>(type: "date", nullable: false),
+                    ShippedDate = table.Column<DateTime>(type: "date", nullable: false),
+                    Status = table.Column<string>(type: "varchar(15)", nullable: false),
+                    Comments = table.Column<string>(type: "text", nullable: false),
                     CustomerNumber = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -156,8 +156,8 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     CustomerNumber = table.Column<int>(nullable: false),
                     CheckNumber = table.Column<string>(nullable: false),
-                    PaymentDate = table.Column<DateTime>(nullable: false),
-                    Amount = table.Column<double>(nullable: false)
+                    PaymentDate = table.Column<DateTime>(type: "date", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -176,9 +176,9 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     OrderNumber = table.Column<int>(nullable: false),
                     ProductCode = table.Column<string>(nullable: false),
-                    QuantityOrdered = table.Column<int>(nullable: false),
-                    PriceEach = table.Column<double>(nullable: false),
-                    OrderLineNumber = table.Column<int>(nullable: false)
+                    QuantityOrdered = table.Column<int>(type: "int(11)", nullable: false),
+                    PriceEach = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    OrderLineNumber = table.Column<short>(type: "smallint(6)", nullable: false)
                 },
                 constraints: table =>
                 {

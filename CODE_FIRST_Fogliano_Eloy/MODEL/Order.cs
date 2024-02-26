@@ -23,7 +23,6 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         public string Status { get; set; }
         [Column(TypeName = "text")]
         public string Comments { get; set; }
-        [ForeignKey("customerNumber")]
         public Customer Customer { get; set; }
 
         public ICollection<OrderDetail> OrderDetails { get; set; }
