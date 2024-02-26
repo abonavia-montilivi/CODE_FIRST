@@ -10,6 +10,14 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class ProductLine
     {
+        public ProductLine(string productLine, string textDescription, string htmlDescription, string image)
+        {
+            this.productLine = productLine;
+            this.TextDescription = textDescription;
+            this.HtmlDescription = htmlDescription;
+            this.Image = image;
+        }
+
         [Key]
         public string productLine { get; set; }
         [Column(TypeName = "varchar(4000)")]

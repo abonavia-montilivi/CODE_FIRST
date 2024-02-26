@@ -10,6 +10,11 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Product
     {
+        public Product() 
+        {
+        
+        }
+
         [Key]
         [Column(TypeName = "varchar(15)")]
         public string ProductCode { get; set; }

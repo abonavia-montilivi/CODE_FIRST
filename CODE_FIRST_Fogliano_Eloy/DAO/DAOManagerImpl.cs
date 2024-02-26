@@ -1,6 +1,7 @@
 ﻿using CODE_FIRST_Fogliano_Eloy.MODEL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,7 +120,24 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 		}
         public void AddProductLines(string textFile)
         {
-            throw new NotImplementedException();
+			StreamReader sr = new StreamReader(textFile);
+
+			string line = sr.ReadLine();
+			line = sr.ReadLine();
+
+			while (line != null)
+			{
+				string[] fields = line.Split(',');
+				ProductLine productLine = new ProductLine(fields[0], fields[1], fields[2], fields[3]);
+
+				context.ProductLines.Add(productLine);
+				context.SaveChanges();
+
+				line = sr.ReadLine();
+			}
+
+
+            //throw new NotImplementedException();
         }
 
         public void AddProducts(string textFile)
