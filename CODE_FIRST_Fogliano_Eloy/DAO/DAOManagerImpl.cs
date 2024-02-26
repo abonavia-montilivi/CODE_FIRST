@@ -100,7 +100,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         {
             throw new NotImplementedException();
         }
-        public void AddEmployees(string textFile) //FALTA CORRETGIR
+        public void AddEmployees(string textFile)
         {
             StreamReader sr = new StreamReader(textFile);
 
@@ -120,7 +120,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                 Employee reportsTo = context.Employees.Find(fields[6].Trim('"'));
                 string jobTittle = fields[7].Trim('"');
 
-                Employee employee = new Employee(employeeNumber, lastName, firstName, extension, email, office, reportsTo, jobTittle);
+                Employee employee = new Employee(employeeNumber, lastName, firstName, extension, email, office.OfficeCode, reportsTo.EmployeeNumber, jobTittle);
 
                 context.Employees.Add(employee);
                 context.SaveChanges();
@@ -129,179 +129,179 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             }
         }
 
-            public void AddOffices(string textFile) //FALTA CORRETGIR
+        public void AddOffices(string textFile)
         {
-                StreamReader sr = new StreamReader(textFile);
+            StreamReader sr = new StreamReader(textFile);
 
-                string line = sr.ReadLine();
+            string line = sr.ReadLine();
+            line = sr.ReadLine();
+
+            while (line != null)
+            {
+                string[] fields = line.Split(',');
+
+                string officeCode = fields[0].Trim('"');
+                string city = fields[1].Trim('"');
+                string phone = fields[2].Trim('"');
+                string addressLine1 = fields[3].Trim('"');
+                string addressLine2 = fields[4].Trim('"');
+                string state = fields[5].Trim('"');
+                string country = fields[6].Trim('"');
+                string postalCode = fields[7].Trim('"');
+                string territory = fields[8].Trim('"');
+
+                Office office = new Office(officeCode, city, phone, addressLine1, addressLine2, state, country, postalCode, territory);
+
+                context.Offices.Add(office);
+                context.SaveChanges();
+
                 line = sr.ReadLine();
-
-                while (line != null)
-                {
-                    string[] fields = line.Split(',');
-
-                    string officeCode = fields[0].Trim('"');
-                    string city = fields[1].Trim('"');
-                    string phone = fields[2].Trim('"');
-                    string addressLine1 = fields[3].Trim('"');
-                    string addressLine2 = fields[4].Trim('"');
-                    string state = fields[5].Trim('"');
-                    string country = fields[6].Trim('"');
-                    string postalCode = fields[7].Trim('"');
-                    string territory = fields[8].Trim('"');
-
-                    Office office = new Office(officeCode, city, phone, addressLine1, addressLine2, state, country, postalCode, territory);
-
-                    context.Offices.Add(office);
-                    context.SaveChanges();
-
-                    line = sr.ReadLine();
-                }
             }
+        }
 
-            public void AddOrderDetails(string file)
+        public void AddOrderDetails(string file)
+        {
+            StreamReader sr = new StreamReader(file);
+
+            string line = sr.ReadLine();
+            line = sr.ReadLine();
+
+            while (line != null)
             {
-                StreamReader sr = new StreamReader(file);
+                string[] fields = line.Split(',');
 
-                string line = sr.ReadLine();
+                int orderNumber = Convert.ToInt32(fields[0].Trim('"'));
+                string productCode = fields[1].Trim('"');
+                int quantityOrdered = Convert.ToInt32(fields[2].Trim('"'));
+                double priceEach = Convert.ToDouble(fields[3].Trim('"'));
+                int orderLineNumber = Convert.ToInt32(fields[4].Trim('"'));
+
+                OrderDetail orderDetail = new OrderDetail(orderNumber, productCode, quantityOrdered, priceEach, orderLineNumber);
+
+                context.OrderDetails.Add(orderDetail);
+                context.SaveChanges();
+
                 line = sr.ReadLine();
-
-                while (line != null)
-                {
-                    string[] fields = line.Split(',');
-
-                    int orderNumber = Convert.ToInt32(fields[0].Trim('"'));
-                    string productCode = fields[2].Trim('"');
-                    DateTime paymentDate = Convert.ToDateTime(fields[2].Trim('"'));
-                    int quantityOrdered = Convert.ToInt32(fields[4].Trim('"'));
-                    double priceEach = Convert.ToDouble(fields[5].Trim('"'));
-
-                    OrderDetail orderDetail = new OrderDetail(orderNumber, productCode, paymentDate, quantityOrdered);
-
-                    context.OrderDetails.Add(orderDetail);
-                    context.SaveChanges();
-
-                    line = sr.ReadLine();
-                }
             }
-            public void AddPayments(string file)
-            {
-                StreamReader sr = new StreamReader(file);
+        }
+        public void AddPayments(string file)
+        {
+            StreamReader sr = new StreamReader(file);
 
-                string line = sr.ReadLine();
+            string line = sr.ReadLine();
+            line = sr.ReadLine();
+
+            while (line != null)
+            {
+                string[] fields = line.Split(',');
+
+                int customerNumber = Convert.ToInt32(fields[0].Trim('"'));
+                string checkNumber = fields[1].Trim('"');
+                DateTime paymentDate = Convert.ToDateTime(fields[2].Trim('"'));
+                double amount = Convert.ToDouble(fields[3].Trim('"'));
+
+                Payment payment = new Payment(customerNumber, checkNumber, paymentDate, amount);
+
+                context.Payments.Add(payment);
+                context.SaveChanges();
+
                 line = sr.ReadLine();
-
-                while (line != null)
-                {
-                    string[] fields = line.Split(',');
-
-                    int customerNumber = Convert.ToInt32(fields[0].Trim('"'));
-                    string checkNumber = fields[1].Trim('"');
-                    DateTime paymentDate = Convert.ToDateTime(fields[2].Trim('"'));
-                    double amount = Convert.ToDouble(fields[3].Trim('"'));
-
-                    Payment payment = new Payment(customerNumber, checkNumber, paymentDate, amount);
-
-                    context.Payments.Add(payment);
-                    context.SaveChanges();
-
-                    line = sr.ReadLine();
-                }
             }
-            public void AddProductLines(string textFile) //FALTA CORRETGIR
-            {
-                StreamReader sr = new StreamReader(textFile);
+        }
+        public void AddProductLines(string textFile)
+        {
+            StreamReader sr = new StreamReader(textFile);
 
-                string line = sr.ReadLine();
+            string line = sr.ReadLine();
+            line = sr.ReadLine();
+
+            while (line != null)
+            {
+                string[] fields = line.Split(',');
+
+                string productLines = fields[0].Trim('"');
+                string textDescription = fields[1].Trim('"');
+                string htmlDescription = fields[2].Trim('"');
+                string image = fields[3].Trim('"');
+
+
+                ProductLine productLine = new ProductLine(productLines, textDescription, htmlDescription, image);
+
+                context.ProductLines.Add(productLine);
+                context.SaveChanges();
+
                 line = sr.ReadLine();
-
-                while (line != null)
-                {
-                    string[] fields = line.Split(',');
-
-                    string productLines = fields[0].Trim('"');
-                    string textDescription = fields[1].Trim('"');
-                    string htmlDescription = fields[2].Trim('"');
-                    string image = fields[3].Trim('"');
-
-
-                    ProductLine productLine = new ProductLine(productLines, textDescription, htmlDescription, image);
-
-                    context.ProductLines.Add(productLine);
-                    context.SaveChanges();
-
-                    line = sr.ReadLine();
-                }
             }
+        }
 
-            public void AddProducts(string textFile)
+        public void AddProducts(string textFile)
+        {
+            StreamReader sr = new StreamReader(textFile);
+
+            string line = sr.ReadLine();
+            line = sr.ReadLine();
+
+            while (line != null)
             {
-                StreamReader sr = new StreamReader(textFile);
+                string[] fields = line.Split(',');
 
-                string line = sr.ReadLine();
+                string productCode = fields[0].Trim('"');
+                string productName = fields[1].Trim('"');
+                ProductLine productLine = context.ProductLines.Find(fields[2].Trim('"'));
+                string productScale = fields[3].Trim('"');
+                string productVendor = fields[4].Trim('"');
+                string productDescription = fields[5].Trim('"');
+                int quantityInStock = Convert.ToInt32(fields[6].Trim('"'));
+                double buyPrice = Convert.ToDouble(fields[7].Trim('"'));
+                double msrp = Convert.ToDouble(fields[8].Trim('"'));
+
+                Product product = new Product(productCode, productName, productLine.productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, msrp);
+
+                context.Products.Add(product);
+                context.SaveChanges();
+
                 line = sr.ReadLine();
-
-                while (line != null)
-                {
-                    string[] fields = line.Split(',');
-
-                    string productCode = fields[0];
-                    string productName = fields[1];
-                    ProductLine currentProductLine = context.ProductLines.Find(fields[2]);
-                    string productScale = fields[3];
-                    string productVendor = fields[4];
-                    string productDescription = fields[5];
-                    int quantityInStock = Convert.ToInt32(fields[6]);
-                    double buyPrice = Convert.ToDouble(fields[7]);
-                    double msrp = Convert.ToDouble(fields[8]);
-
-                    Product product = new Product(productCode, productName, currentProductLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, msrp);
-
-                    context.Products.Add(product);
-                    context.SaveChanges();
-
-                    line = sr.ReadLine();
-                }
             }
+        }
 
-            public object ProductsMainInfo()
-            {
-                throw new NotImplementedException();
-            }
+        public object ProductsMainInfo()
+        {
+            throw new NotImplementedException();
+        }
 
-            public List<Product> ProductsPerOrder()
-            {
-                throw new NotImplementedException();
-            }
+        public List<Product> ProductsPerOrder()
+        {
+            throw new NotImplementedException();
+        }
 
-            public List<Order> OrdersBetweenDates(DateTime startDate, DateTime endDate)
-            {
-                throw new NotImplementedException();
-            }
+        public List<Order> OrdersBetweenDates(DateTime startDate, DateTime endDate)
+        {
+            throw new NotImplementedException();
+        }
 
-            public List<Product> Top10MostExpensiveProducts()
-            {
-                throw new NotImplementedException();
-            }
+        public List<Product> Top10MostExpensiveProducts()
+        {
+            throw new NotImplementedException();
+        }
 
-            public List<Employee> EmployeesPerBoss()
-            {
-                throw new NotImplementedException();
-            }
+        public List<Employee> EmployeesPerBoss()
+        {
+            throw new NotImplementedException();
+        }
 
-            public object ProductsForEachProductLine()
-            {
-                throw new NotImplementedException();
-            }
+        public object ProductsForEachProductLine()
+        {
+            throw new NotImplementedException();
+        }
 
-            public object ProductsYetToBuyFromACustomer(Customer customer)
-            {
-                throw new NotImplementedException();
-            }
+        public object ProductsYetToBuyFromACustomer(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
 
-            public List<Employee> BestSellerEmployees()
-            {
-                throw new NotImplementedException();
-            }
+        public List<Employee> BestSellerEmployees()
+        {
+            throw new NotImplementedException();
+        }
     }
 } 

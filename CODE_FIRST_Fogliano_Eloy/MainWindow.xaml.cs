@@ -31,7 +31,7 @@ namespace CODE_FIRST_Fogliano_Eloy
             //daoManager.AddCustomers("CUSTOMERS.csv");
             //daoManager.AddPayments("PAYMENTS.csv");
             //daoManager.AddOrders("ORDERS.csv");
-            //daoManager.AddOrderDetails("ORDERDETAILS.csv");
+            daoManager.AddOrderDetails("ORDERDETAILS.csv");
 
 
 

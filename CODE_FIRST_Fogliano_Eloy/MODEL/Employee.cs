@@ -10,16 +10,16 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Employee
     {
-        public Employee(int employeeNumber, string lastName, string firstName, string extension, string email, string office, int reportsTo, string jobTittle) 
+        public Employee(int employeeNumber, string lastName, string firstName, string extension, string email, string OfficeKey, int ReportsToKey, string JobTitle) 
         {
             this.EmployeeNumber = employeeNumber;
             this.LastName = lastName;
             this.FirstName = firstName;
             this.Extension = extension;
             this.Email = email;
-            this.OfficeKey = office;
-            this.ReportsToKey = reportsTo;            
-            this.JobTitle = jobTittle;
+            this.OfficeKey = OfficeKey;
+            this.ReportsToKey = ReportsToKey;            
+            this.JobTitle = JobTitle;
         }
         [Key]
         [Column(TypeName = "int(11)")]
@@ -33,11 +33,15 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         [Column(TypeName = "varchar(100)")]
         public string Email { get; set; }
         [Column(TypeName = "varchar(10)")]
-        public Office Office { get; set; }
+
+        [ForeignKey("Office")]
         public string OfficeKey { get; set; }
-        [Column(TypeName = "int(11)")]
-        public Employee ReportsTo { get; set; }
+        public Office Office { get; set; }
+
+        [ForeignKey("Employee")]
         public int ReportsToKey { get; set; }
+        public Employee ReportsTo { get; set; }
+        
         [Column(TypeName = "varchar(50)")]
         public string JobTitle { get; set; }
 
