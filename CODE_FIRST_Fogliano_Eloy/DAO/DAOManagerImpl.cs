@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CODE_FIRST_Fogliano_Eloy.MODEL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,40 +15,40 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             this.context = context;
 
             //using (context)
-            {
+            //{
 
-                // Query customers from France order by credit limit
-                //var customersWithName = context.Customers.Where(c => c.Country == "France").OrderBy(c => c.CreditLimit).ToList();
+            //    // Query customers from France order by credit limit
+            //    var customersWithName = context.Customers.Where(c => c.Country == "France").OrderBy(c => c.CreditLimit).ToList();
 
-                //filtering and sorting
-                var filteredProducts = context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
+            //    //filtering and sorting
+            //    var filteredProducts = context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
 
-                //joining entities
-                var customerPayments = context.Customers
-                    .Join(context.Payments,
-                    customer => customer.CustomerNumber,
-                    payment => payment.CustomerNumber,
-                    (customer, payment) => new
-                    {
-                        CustomerName = customer.CustomerName,
-                        PaymentAmount = payment.Amount
+            //    //joining entities
+            //    var customerPayments = context.Customers
+            //        .Join(context.Payments,
+            //        customer => customer.CustomerNumber,
+            //        payment => payment.CustomerNumber,
+            //        (customer, payment) => new
+            //        {
+            //            CustomerName = customer.CustomerName,
+            //            PaymentAmount = payment.Amount
 
-                    })
-                    .ToList();
+            //        })
+            //        .ToList();
 
-                //agregation and grouping
+            //    //agregation and grouping
 
-                var employeesPerOffice = context.Employees
-                  .GroupBy(e => e.Office)
-                  .Select(o => new
-                  {
-                      OfficeCode = o.Key,
-                      EmployeeCount = o.Count()
-                  })
-                 .ToList();
+            //    var employeesPerOffice = context.Employees
+            //      .GroupBy(e => e.Office)
+            //      .Select(o => new
+            //      {
+            //          OfficeCode = o.Key,
+            //          EmployeeCount = o.Count()
+            //      })
+            //     .ToList();
 
 
-            }
+            //}
         }
         public List<MODEL.Customer> CustomersFromFrance()
         {
@@ -125,5 +126,45 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         {
             throw new NotImplementedException();
         }
-    }
+
+		public object ProductsMainInfo()
+		{
+			throw new NotImplementedException();
+		}
+
+		public List<Product> ProductsPerOrder()
+		{
+			throw new NotImplementedException();
+		}
+
+		public List<Order> OrdersBetweenDates(DateTime startDate, DateTime endDate)
+		{
+			throw new NotImplementedException();
+		}
+
+		public List<Product> Top10MostExpensiveProducts()
+		{
+			throw new NotImplementedException();
+		}
+
+		public List<Employee> EmployeesPerBoss()
+		{
+			throw new NotImplementedException();
+		}
+
+		public object ProductsForEachProductLine()
+		{
+			throw new NotImplementedException();
+		}
+
+		public object ProductsYetToBuyFromACustomer(Customer customer)
+		{
+			throw new NotImplementedException();
+		}
+
+		public List<Employee> BestSellerEmployees()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

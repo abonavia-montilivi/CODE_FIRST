@@ -17,7 +17,9 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 
         [Key]
         public string CheckNumber { get; set; }
+        [Column(TypeName = "date")]
         public DateTime PaymentDate { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
         public double Amount { get; set; }
     }
 }
