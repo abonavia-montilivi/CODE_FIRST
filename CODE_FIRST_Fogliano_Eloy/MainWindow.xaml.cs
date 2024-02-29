@@ -23,7 +23,7 @@ namespace CODE_FIRST_Fogliano_Eloy
         {
             InitializeComponent();
             DAOManagerFactory factory = new DAOManagerFactory();
-            //daoManager = factory.CreateDAO(modelDBContext);
+            daoManager = factory.CreateDAO(modelDBContext);
             //daoManager.AddProductLines("PRODUCTLINES.csv");
             //daoManager.AddProducts("PRODUCTS.csv");
             //daoManager.AddOffices("OFFICES.csv");
@@ -33,10 +33,10 @@ namespace CODE_FIRST_Fogliano_Eloy
             //daoManager.AddOrders("ORDERS.csv");
             //daoManager.AddOrderDetails("ORDERDETAILS.csv");
             // var employees = daoManager.EmployeesPerBoss();
-           //var customers = daoManager.CustomersFromFrance();e
-           //var productsByQuantity = daoManager.ProductsByQuantityAndMsrp();
-           var paymentsPerCustomer = daoManager.PaymentsPerCustomer();
-        //   var employeesPerOffice = daoManager.EmployeesPerOffice();
+           var customers = daoManager.CustomersFromFrance();
+           var productsByQuantity = daoManager.ProductsByQuantityAndMsrp();
+          var paymentsPerCustomer = daoManager.PaymentsPerCustomer();
+          var employeesPerOffice = daoManager.EmployeesPerOffice();
             //Console.WriteLine();
 
 

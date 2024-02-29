@@ -55,48 +55,74 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
             //}
         }
-		#region Eric
-		public List<MODEL.Customer> CustomersFromFrance()
+        #region Eric
+        public List<MODEL.Customer> CustomersFromFrance()
         {
-            // Query customers from France order by credit limit
-            return context.Customers.Where(c => c.Country == "France").OrderBy(c => c.CreditLimit).ToList();
+            var customersFromFrance = context.Customers
+                .Where(c => c.Country == "France")
+                .OrderBy(c => c.CreditLimit)
+                .ToList();
+
+            return customersFromFrance;
         }
+
+
         public List<MODEL.Product> ProductsByQuantityAndMsrp()
         {
             //filtering and sorting
             return context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
         }
-        public Object PaymentsPerCustomer()
+        public List<object> PaymentsPerCustomer()
         {
-            //joining entities
+            //join
             return context.Customers
-                    .Join(context.Payments,
+                .Join(context.Payments,
                     customer => customer.CustomerNumber,
                     payment => payment.CustomerNumber,
                     (customer, payment) => new
                     {
                         CustomerName = customer.CustomerName,
                         PaymentAmount = payment.Amount
-
                     })
-                    .ToList();
+                .Select(item => new
+                {
+                    CustomerName = item.CustomerName,
+                    PaymentAmount = item.PaymentAmount
+                })
+                .Cast<object>()
+                .ToList();
         }
 
-        public Object EmployeesPerOffice()
+
+
+        public List<object> EmployeesPerOffice()
         {
-            //agregation and grouping
-            return context.Employees
-                  .GroupBy(e => e.Office)
-                  .Select(o => new
-                  {
-                      OfficeCode = o.Key,
-                      EmployeeCount = o.Count()
-                  })
-                 .ToList();
+            var employeesWithOffice = context.Employees
+                .Join(
+                    context.Offices,
+                    e => e.OfficeKey,
+                    o => o.OfficeCode,
+                    (e, o) => new { Employee = e, Office = o })
+                .ToList();
+
+            var employeesPerOffice = employeesWithOffice
+                .GroupBy(eo => eo.Office)
+                .Select(g => new
+                {
+                    OfficeCode = g.Key.OfficeCode,
+                    EmployeeCount = g.Count()
+                })
+                .Cast<object>()
+                .ToList();
+
+            return employeesPerOffice;
         }
-		#endregion
-		#region adds
-		public void AddOrders(string file)
+
+
+
+        #endregion
+        #region adds
+        public void AddOrders(string file)
         {
 			StreamReader sr = new StreamReader(file);
 
