@@ -32,7 +32,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 		public List<MODEL.Product> Top10MostExpensiveProducts();
 
 		//Arnau Queries
-		public List<Employee> EmployeesPerBoss();
+		public List<Object> EmployeesPerBoss();
 		public Object ProductsForEachProductLine();
 		public Object ProductsYetToBuyFromACustomer(MODEL.Customer customer);
 		public List<Employee> BestSellerEmployees();

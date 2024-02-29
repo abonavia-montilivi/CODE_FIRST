@@ -1,4 +1,5 @@
 ﻿using CODE_FIRST_Fogliano_Eloy.MODEL;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -398,12 +399,19 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         }
 		#endregion
 		#region Arnau
-		public List<Employee> EmployeesPerBoss()
-        {
-            throw new NotImplementedException();
-        }
+		public List<object> EmployeesPerBoss()
+		{
+			return context.Employees
+                .GroupBy(e => e.ReportsToKey)
+	               .Select(g => new
+	               {
+		               Boss = g.Key,
+		               Employees = g.Count()
+	               })
+	               .ToList<object>();
+		}
 
-        public object ProductsForEachProductLine()
+		public object ProductsForEachProductLine()
         {
             throw new NotImplementedException();
         }
