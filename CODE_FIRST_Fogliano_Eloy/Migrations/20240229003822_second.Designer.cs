@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CODE_FIRST_Fogliano_Eloy.Migrations
 {
     [DbContext(typeof(ClassicModelsDBContext))]
-    [Migration("20240226230040_third")]
-    partial class third
+    [Migration("20240229003822_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -111,10 +111,10 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
-                    b.Property<int>("ReportsToEmployeeNumber")
+                    b.Property<int?>("ReportsToEmployeeNumber")
                         .HasColumnType("int(11)");
 
-                    b.Property<int>("ReportsToKey")
+                    b.Property<int?>("ReportsToKey")
                         .HasColumnType("int");
 
                     b.HasKey("EmployeeNumber");
@@ -259,9 +259,8 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ProductLineKey")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("ProductLineId")
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
@@ -278,13 +277,9 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                     b.Property<short>("QuantityInStock")
                         .HasColumnType("smallint");
 
-                    b.Property<string>("productLine")
-                        .IsRequired()
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.HasKey("ProductCode");
 
-                    b.HasIndex("productLine");
+                    b.HasIndex("ProductLineId");
 
                     b.ToTable("Products");
                 });
@@ -292,7 +287,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
             modelBuilder.Entity("CODE_FIRST_Fogliano_Eloy.MODEL.ProductLine", b =>
                 {
                     b.Property<string>("productLine")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("HtmlDescription")
                         .IsRequired()
@@ -330,9 +325,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
 
                     b.HasOne("CODE_FIRST_Fogliano_Eloy.MODEL.Employee", "ReportsTo")
                         .WithMany("Reports")
-                        .HasForeignKey("ReportsToEmployeeNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReportsToEmployeeNumber");
                 });
 
             modelBuilder.Entity("CODE_FIRST_Fogliano_Eloy.MODEL.Order", b =>
@@ -372,9 +365,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     b.HasOne("CODE_FIRST_Fogliano_Eloy.MODEL.ProductLine", "ProductLine")
                         .WithMany("Products")
-                        .HasForeignKey("productLine")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductLineId");
                 });
 #pragma warning restore 612, 618
         }

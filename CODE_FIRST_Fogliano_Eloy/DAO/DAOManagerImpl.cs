@@ -1,9 +1,11 @@
 ﻿using CODE_FIRST_Fogliano_Eloy.MODEL;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media.TextFormatting;
 
@@ -93,13 +95,92 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
         public void AddOrders(string file)
         {
-            throw new NotImplementedException();
-        }
+			StreamReader sr = new StreamReader(file);
+
+			string line = sr.ReadLine();
+			line = sr.ReadLine();
+
+			while (line != null)
+			{
+				string[] fields = Regex.Split(line, @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))");
+
+				int orderNumber = int.Parse(fields[0].Trim('"'));
+				DateTime orderDate = DateTime.Parse(fields[1].Trim('"'));
+				DateTime requiredDate = DateTime.Parse(fields[2].Trim('"'));
+                DateTime? shippedDate = null;
+                if (fields[3].Trim('"') != "NULL") 
+				shippedDate = DateTime.Parse(fields[3].Trim('"'));
+				string status = fields[4].Trim('"');
+				string comments = fields[5] == "NULL" ? null : fields[5].Trim('"');
+				int customerKey = int.Parse(fields[6].Trim('"'));
+
+				// Find the corresponding Customer based on the customerKey
+				Customer customer = context.Customers.Find(customerKey);				
+
+				// Create a new Order object
+				Order order = new Order(orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerKey);
+				order.Customer = customer;
+
+				context.Orders.Add(order);
+				context.SaveChanges();
+
+				line = sr.ReadLine();
+			}
+
+			// Close the StreamReader
+			sr.Close();
+		}
 
         public void AddCustomers(string file)
         {
-            throw new NotImplementedException();
-        }
+			StreamReader sr = new StreamReader(file);
+
+			string line = sr.ReadLine(); 
+			line = sr.ReadLine(); 
+
+			while (line != null)
+			{
+				string[] fields = Regex.Split(line, @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))");
+
+				int customerNumber = int.Parse(fields[0].Trim('"'));
+				string customerName = fields[1].Trim('"');
+                if (customerNumber == 125)
+                    Console.WriteLine(); ;
+				string contactLastName = fields[2].Trim('"');
+				string contactFirstName = fields[3].Trim('"');
+				string phone = fields[4].Trim('"');
+				string addressLine1 = fields[5].Trim('"');
+				string addressLine2 = fields[6].Trim('"');
+                if (addressLine2 == "NULL") addressLine2 = null;
+                string city = fields[7].Trim('"');
+				string state = fields[8].Trim('"');
+                if (state == "NULL") state = null;
+				string postalCode = fields[9].Trim('"');
+                if (postalCode == "NULL") postalCode = null;
+				string country = fields[10].Trim('"');
+
+				int? salesRepKey = fields[11] == "NULL" ? null : int.Parse(fields[11].Trim('"'));
+				double creditLimit = double.Parse(fields[12].Trim('"'), CultureInfo.InvariantCulture);
+
+				Employee salesRep = context.Employees.Find(salesRepKey);
+				//if (salesRep == null)
+				//{
+				//	Employee tmp = new Employee(0, "null", "null", "null", "null", "null",0, "null");
+				//	context.Employees.Add(tmp);
+				//	context.SaveChanges();
+				//}
+				Customer customer = new Customer(customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepKey, creditLimit);
+				customer.SalesRep = salesRep;
+
+				context.Customers.Add(customer);
+				context.SaveChanges();
+
+				line = sr.ReadLine();
+			}
+
+			// Close the StreamReader
+			sr.Close();
+		}
         public void AddEmployees(string textFile)
         {
             StreamReader sr = new StreamReader(textFile);
@@ -117,19 +198,34 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                 string extension = fields[3].Trim('"');
                 string email = fields[4].Trim('"');
                 Office office = context.Offices.Find(fields[5].Trim('"'));
-                Employee reportsTo = context.Employees.Find(fields[6].Trim('"'));
+                Employee reportsTo = null;
+                int report= 0;
+                if (fields[6].Trim('"') == "NULL")
+                {
+                    //Employee reports = new Employee(0, "", "","","","",1,"");
+                    //context.Employees.Add(reports);
+                    //context.SaveChanges();
+                    report = 0;
+                }
+                else
+                {
+					reportsTo = context.Employees.Find(int.Parse(fields[6].Trim('"')));
+					report = reportsTo.EmployeeNumber;
+				}
                 string jobTittle = fields[7].Trim('"');
 
-                Employee employee = new Employee(employeeNumber, lastName, firstName, extension, email, office.OfficeCode, reportsTo.EmployeeNumber, jobTittle);
+                Employee employee = new Employee(employeeNumber, lastName, firstName, extension, email, office.OfficeCode, report, jobTittle);
+                employee.ReportsTo = reportsTo;
 
                 context.Employees.Add(employee);
                 context.SaveChanges();
 
                 line = sr.ReadLine();
             }
-        }
+			sr.Close();
+		}
 
-        public void AddOffices(string textFile)
+		public void AddOffices(string textFile)
         {
             StreamReader sr = new StreamReader(textFile);
 
@@ -157,9 +253,10 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
                 line = sr.ReadLine();
             }
-        }
+			sr.Close();
+		}
 
-        public void AddOrderDetails(string file)
+		public void AddOrderDetails(string file)
         {
             StreamReader sr = new StreamReader(file);
 
@@ -183,8 +280,9 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
                 line = sr.ReadLine();
             }
-        }
-        public void AddPayments(string file)
+			sr.Close();
+		}
+		public void AddPayments(string file)
         {
             StreamReader sr = new StreamReader(file);
 
@@ -207,8 +305,36 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
                 line = sr.ReadLine();
             }
-        }
-        public void AddProductLines(string textFile)
+			sr.Close();
+		}
+		public void AddProductLines(string textFile)
+		{
+			StreamReader sr = new StreamReader(textFile);
+
+			string line = sr.ReadLine();
+			line = sr.ReadLine();
+
+			while (line != null)
+			{
+				string[] fields = Regex.Split(line, @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))");
+
+				string productLines = fields[0].Trim('"');
+				string textDescription = fields[1].Trim('"');
+				string htmlDescription = fields[2].Trim('"');
+				string image = fields[3].Trim('"');
+
+
+				ProductLine productLine = new ProductLine(productLines, textDescription, htmlDescription, image);
+
+				context.ProductLines.Add(productLine);
+				context.SaveChanges();
+
+				line = sr.ReadLine();
+			}
+			sr.Close();
+		}
+
+		public void AddProducts(string textFile)
         {
             StreamReader sr = new StreamReader(textFile);
 
@@ -217,51 +343,44 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
             while (line != null)
             {
-                string[] fields = line.Split(',');
+                if (line == null)
+                {
 
-                string productLines = fields[0].Trim('"');
-                string textDescription = fields[1].Trim('"');
-                string htmlDescription = fields[2].Trim('"');
-                string image = fields[3].Trim('"');
+                }
+                else
+                {
 
+                    string[] fields = line.Split("\",\"");
 
-                ProductLine productLine = new ProductLine(productLines, textDescription, htmlDescription, image);
+                    string productCode = fields[0].Trim('"');
+                    string productName = fields[1].Trim('"');
+                    string productLineId = fields[2].Trim('"');
+				    ProductLine productLine = context.ProductLines.Find(fields[2].Trim('"'));
+                    if (productLine == null)
+                    {
+                        ProductLine tmp = new ProductLine(fields[2], fields[2], fields[2], "null");
+                        context.ProductLines.Add(tmp);
+                        context.SaveChanges();
+                    }
+				    //string productLine = fields[6].Trim('"').ToLower().Contains("null") ? null : Convert.ToString(fields[6]);
+				    string productScale = fields[3].Trim('"');
+                    string productVendor = fields[4].Trim('"');
+                    string productDescription = fields[5].Trim('"');
+                    int quantityInStock = Convert.ToInt32(fields[6].Trim('"'));
+                    double buyPrice = Convert.ToDouble(fields[7].Trim('"'));
+                    double msrp = Convert.ToDouble(fields[8].Trim('"'));
 
-                context.ProductLines.Add(productLine);
-                context.SaveChanges();
-
-                line = sr.ReadLine();
-            }
-        }
-
-        public void AddProducts(string textFile)
-        {
-            StreamReader sr = new StreamReader(textFile);
-
-            string line = sr.ReadLine();
-            line = sr.ReadLine();
-
-            while (line != null)
-            {
-                string[] fields = line.Split(',');
-
-                string productCode = fields[0].Trim('"');
-                string productName = fields[1].Trim('"');
-                ProductLine productLine = context.ProductLines.Find(fields[2].Trim('"'));
-                string productScale = fields[3].Trim('"');
-                string productVendor = fields[4].Trim('"');
-                string productDescription = fields[5].Trim('"');
-                int quantityInStock = Convert.ToInt32(fields[6].Trim('"'));
-                double buyPrice = Convert.ToDouble(fields[7].Trim('"'));
-                double msrp = Convert.ToDouble(fields[8].Trim('"'));
-
-                Product product = new Product(productCode, productName, productLine.productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, msrp);
-
-                context.Products.Add(product);
-                context.SaveChanges();
+                    //Product product = new Product(productCode, productName, productLine.productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, msrp);
+				    Product product = new Product(productCode, productName, productLineId, productScale, productVendor, productDescription, quantityInStock, buyPrice, msrp);
+                    //ProductLine pl = new ProductLine("","","","");
+                    product.ProductLine = productLine;
+				    context.Products.Add(product);
+                    context.SaveChanges();
+                }
 
                 line = sr.ReadLine();
             }
+            sr.Close();
         }
 
         public object ProductsMainInfo()

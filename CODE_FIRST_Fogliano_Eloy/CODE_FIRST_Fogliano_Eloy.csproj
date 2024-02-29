@@ -37,6 +37,12 @@
     <Compile Remove="Migrations\20240226174835_second.Designer.cs" />
     <Compile Remove="Migrations\20240226175018_second.cs" />
     <Compile Remove="Migrations\20240226175018_second.Designer.cs" />
+    <Compile Remove="Migrations\20240229003541_second.cs" />
+    <Compile Remove="Migrations\20240229003541_second.Designer.cs" />
+    <Compile Remove="Migrations\20240229020127_third.cs" />
+    <Compile Remove="Migrations\20240229020127_third.Designer.cs" />
+    <Compile Remove="Migrations\20240229022325_fifth.cs" />
+    <Compile Remove="Migrations\20240229022325_fifth.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -31,7 +31,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 name: "ProductLines",
                 columns: table => new
                 {
-                    productLine = table.Column<string>(nullable: false),
+                    productLine = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     TextDescription = table.Column<string>(type: "varchar(4000)", nullable: false),
                     HtmlDescription = table.Column<string>(type: "mediumtext", nullable: false),
                     Image = table.Column<byte[]>(type: "mediumblob", nullable: false)
@@ -51,7 +51,8 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                     FirstName = table.Column<string>(type: "varchar(50)", nullable: false),
                     Extension = table.Column<string>(type: "varchar(10)", nullable: false),
                     Email = table.Column<string>(type: "varchar(100)", nullable: false),
-                    OfficeCode = table.Column<string>(nullable: false),
+                    OfficeKey = table.Column<string>(type: "varchar(10)", nullable: false),
+                    ReportsToKey = table.Column<int>(nullable: false),
                     ReportsToEmployeeNumber = table.Column<int>(nullable: false),
                     JobTitle = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
@@ -59,8 +60,8 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     table.PrimaryKey("PK_Employees", x => x.EmployeeNumber);
                     table.ForeignKey(
-                        name: "FK_Employees_Offices_OfficeCode",
-                        column: x => x.OfficeCode,
+                        name: "FK_Employees_Offices_OfficeKey",
+                        column: x => x.OfficeKey,
                         principalTable: "Offices",
                         principalColumn: "OfficeCode",
                         onDelete: ReferentialAction.Cascade);
@@ -78,7 +79,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     ProductCode = table.Column<string>(type: "varchar(15)", nullable: false),
                     ProductName = table.Column<string>(type: "varchar(70)", nullable: false),
-                    productLine = table.Column<string>(nullable: true),
+                    ProductLineId = table.Column<string>(type: "VARCHAR(50)", nullable: true),
                     ProductScale = table.Column<string>(type: "varchar(10)", nullable: false),
                     ProductVendor = table.Column<string>(type: "varchar(50)", nullable: false),
                     ProductDescription = table.Column<string>(type: "text", nullable: false),
@@ -90,8 +91,8 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductCode);
                     table.ForeignKey(
-                        name: "FK_Products_ProductLines_productLine",
-                        column: x => x.productLine,
+                        name: "FK_Products_ProductLines_ProductLineId",
+                        column: x => x.ProductLineId,
                         principalTable: "ProductLines",
                         principalColumn: "productLine",
                         onDelete: ReferentialAction.Restrict);
@@ -106,12 +107,14 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                     CustomerName = table.Column<string>(type: "varchar(50)", nullable: false),
                     ContactLastName = table.Column<string>(type: "varchar(50)", nullable: false),
                     ContactFirstName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Phone = table.Column<string>(type: "varchar(50)", nullable: false),
                     AddressLine1 = table.Column<string>(type: "varchar(50)", nullable: false),
                     AddressLine2 = table.Column<string>(type: "varchar(50)", nullable: false),
                     City = table.Column<string>(type: "varchar(50)", nullable: false),
                     State = table.Column<string>(type: "varchar(50)", nullable: false),
                     PostalCode = table.Column<string>(type: "varchar(15)", nullable: false),
                     Country = table.Column<string>(type: "varchar(50)", nullable: false),
+                    SalesRepKey = table.Column<int>(nullable: false),
                     SalesRepEmployeeNumber = table.Column<int>(nullable: false),
                     CreditLimit = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
@@ -137,14 +140,14 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                     ShippedDate = table.Column<DateTime>(type: "date", nullable: false),
                     Status = table.Column<string>(type: "varchar(15)", nullable: false),
                     Comments = table.Column<string>(type: "text", nullable: false),
-                    CustomerNumber = table.Column<int>(nullable: false)
+                    CustomerKey = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrderNumber);
                     table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerNumber",
-                        column: x => x.CustomerNumber,
+                        name: "FK_Orders_Customers_CustomerKey",
+                        column: x => x.CustomerKey,
                         principalTable: "Customers",
                         principalColumn: "CustomerNumber",
                         onDelete: ReferentialAction.Cascade);
@@ -155,7 +158,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 columns: table => new
                 {
                     CustomerNumber = table.Column<int>(nullable: false),
-                    CheckNumber = table.Column<string>(nullable: false),
+                    CheckNumber = table.Column<string>(type: "varchar(50)", nullable: false),
                     PaymentDate = table.Column<DateTime>(type: "date", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
@@ -203,9 +206,9 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 column: "SalesRepEmployeeNumber");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_OfficeCode",
+                name: "IX_Employees_OfficeKey",
                 table: "Employees",
-                column: "OfficeCode");
+                column: "OfficeKey");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_ReportsToEmployeeNumber",
@@ -218,14 +221,14 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 column: "ProductCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerNumber",
+                name: "IX_Orders_CustomerKey",
                 table: "Orders",
-                column: "CustomerNumber");
+                column: "CustomerKey");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_productLine",
+                name: "IX_Products_ProductLineId",
                 table: "Products",
-                column: "productLine");
+                column: "ProductLineId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -10,7 +10,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Customer
     {
-        public Customer(int CustomerNumber,string CustomerName,	string ContactLastName, string ContactFirstName, string phone, string AddressLine1, string AddressLine2, string City,	string State, string PostalCode, string Country, int SalesRepKey,	double CreditLimit) 
+        public Customer(int CustomerNumber,string CustomerName,	string ContactLastName, string ContactFirstName, string phone, string AddressLine1, string? AddressLine2, string City,	string? State, string? PostalCode, string Country, int? SalesRepKey,	double CreditLimit) 
         {
             this.CustomerNumber = CustomerNumber;
             this.CustomerName = CustomerName;
@@ -40,19 +40,19 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         [Column(TypeName = "varchar(50)")]
         public string AddressLine1 { get; set; }
         [Column(TypeName = "varchar(50)")]
-        public string AddressLine2 { get; set; }
+        public string? AddressLine2 { get; set; }
         [Column(TypeName = "varchar(50)")]
         public string City { get; set; }
         [Column(TypeName = "varchar(50)")]
-        public string State { get; set; }
+        public string? State { get; set; }
         [Column(TypeName = "varchar(15)")]
-        public string PostalCode { get; set; }
+        public string? PostalCode { get; set; }
         [Column(TypeName = "varchar(50)")]
         public string Country { get; set; }
 
         [ForeignKey("Customer")]
-        public int SalesRepKey { get; set; }
-        public Employee SalesRep { get; set; }
+        public int? SalesRepKey { get; set; }
+        public Employee? SalesRep { get; set; }
 
 
         [Column(TypeName = "decimal(10,2)")]

@@ -10,7 +10,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Employee
     {
-        public Employee(int employeeNumber, string lastName, string firstName, string extension, string email, string OfficeKey, int ReportsToKey, string JobTitle) 
+        public Employee(int employeeNumber, string lastName, string firstName, string extension, string email, string OfficeKey, int? ReportsToKey, string JobTitle) 
         {
             this.EmployeeNumber = employeeNumber;
             this.LastName = lastName;
@@ -39,8 +39,8 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         public Office Office { get; set; }
 
         [ForeignKey("Employee")]
-        public int ReportsToKey { get; set; }
-        public Employee ReportsTo { get; set; }
+        public int? ReportsToKey { get; set; }
+        public Employee? ReportsTo { get; set; }
         
         [Column(TypeName = "varchar(50)")]
         public string JobTitle { get; set; }

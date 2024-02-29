@@ -3,14 +3,16 @@ using System;
 using CODE_FIRST_Fogliano_Eloy.MODEL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CODE_FIRST_Fogliano_Eloy.Migrations
 {
     [DbContext(typeof(ClassicModelsDBContext))]
-    partial class ClassicModelsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240229020917_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,6 +172,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         .HasColumnType("int(11)");
 
                     b.Property<string>("Comments")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("CustomerKey")
@@ -181,7 +184,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                     b.Property<DateTime>("RequiredDate")
                         .HasColumnType("date");
 
-                    b.Property<DateTime?>("ShippedDate")
+                    b.Property<DateTime>("ShippedDate")
                         .HasColumnType("date");
 
                     b.Property<string>("Status")
@@ -284,9 +287,11 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("HtmlDescription")
+                        .IsRequired()
                         .HasColumnType("mediumtext");
 
                     b.Property<byte[]>("Image")
+                        .IsRequired()
                         .HasColumnType("mediumblob");
 
                     b.Property<string>("TextDescription")

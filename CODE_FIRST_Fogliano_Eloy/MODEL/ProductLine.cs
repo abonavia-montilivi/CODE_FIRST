@@ -10,7 +10,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class ProductLine
     {
-        public ProductLine(string productLine, string textDescription, string htmlDescription, string image)
+        public ProductLine(string productLine, string textDescription, string? htmlDescription, string? image)
         {
             this.productLine = productLine;
             this.TextDescription = textDescription;
@@ -19,13 +19,14 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         }
 
         [Key]
-        public string productLine { get; set; }
+		[Column(TypeName = "VARCHAR(50)")]
+		public string productLine { get; set; }
         [Column(TypeName = "varchar(4000)")]
         public string TextDescription { get; set; }
         [Column(TypeName = "mediumtext")]
-        public string HtmlDescription { get; set; }
+        public string? HtmlDescription { get; set; }
         [Column(TypeName = "mediumblob")]
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
         public ICollection<Product> Products { get; set; }
     }

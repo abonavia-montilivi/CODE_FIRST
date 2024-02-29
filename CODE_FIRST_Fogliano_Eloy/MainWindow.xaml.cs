@@ -24,13 +24,13 @@ namespace CODE_FIRST_Fogliano_Eloy
             InitializeComponent();
             DAOManagerFactory factory = new DAOManagerFactory();
             daoManager = factory.CreateDAO(modelDBContext);
-            //daoManager.AddProductLines("PRODUCTLINES.csv");
-            //daoManager.AddProducts("PRODUCTS.csv");
-            //daoManager.AddOffices("OFFICES.csv");
-            //daoManager.AddEmployees("EMPLOYEES.csv");
-            //daoManager.AddCustomers("CUSTOMERS.csv");
-            //daoManager.AddPayments("PAYMENTS.csv");
-            //daoManager.AddOrders("ORDERS.csv");
+            daoManager.AddProductLines("PRODUCTLINES.csv");
+            daoManager.AddProducts("PRODUCTS.csv");
+            daoManager.AddOffices("OFFICES.csv");
+            daoManager.AddEmployees("EMPLOYEES.csv");
+            daoManager.AddCustomers("CUSTOMERS.csv");
+            daoManager.AddPayments("PAYMENTS.csv");
+            daoManager.AddOrders("ORDERS.csv");
             daoManager.AddOrderDetails("ORDERDETAILS.csv");
 
 

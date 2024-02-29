@@ -10,7 +10,7 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Order
     {
-        public Order(int orderNumber, DateTime orderDate, DateTime RequiredDate, DateTime shippedDate, string status, string comments, int CustomerKey) 
+        public Order(int orderNumber, DateTime orderDate, DateTime RequiredDate, DateTime? shippedDate, string status, string? comments, int CustomerKey) 
         {
             this.OrderNumber = orderNumber;
             this.OrderDate = orderDate;
@@ -28,11 +28,11 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         [Column(TypeName = "date")]
         public DateTime RequiredDate { get; set; }
         [Column(TypeName = "date")]
-        public DateTime ShippedDate { get; set; }
+        public DateTime? ShippedDate { get; set; }
         [Column(TypeName = "varchar(15)")]
         public string Status { get; set; }
         [Column(TypeName = "text")]
-        public string Comments { get; set; }
+        public string? Comments { get; set; }
 
         [ForeignKey("Customer")]
         public int CustomerKey { get; set; }

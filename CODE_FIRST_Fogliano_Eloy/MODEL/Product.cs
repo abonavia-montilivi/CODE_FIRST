@@ -10,11 +10,11 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
 {
     public class Product
     {
-        public Product(string ProductCode, string ProductName, string ProductLineKey, string ProductScale, string ProductVendor, string ProductDescription, int QuantityInStock, double BuyPrice, double MSRP) 
+        public Product(string ProductCode, string ProductName, string ProductLineId, string ProductScale, string ProductVendor, string ProductDescription, int QuantityInStock, double BuyPrice, double MSRP) 
         {
 			this.ProductCode = ProductCode;
             this.ProductName = ProductName;
-            this.ProductLineKey = ProductLineKey;
+            this.ProductLineId = ProductLineId;
             this.ProductScale = ProductScale;
             this.ProductVendor = ProductVendor;
             this.ProductDescription = ProductDescription;
@@ -29,8 +29,9 @@ namespace CODE_FIRST_Fogliano_Eloy.MODEL
         [Column(TypeName = "varchar(70)")]
         public string ProductName { get; set; }
 
-        [ForeignKey("productLine")]
-        public string ProductLineKey { get; set; }
+        [ForeignKey("ProductLine")]
+        [Column(TypeName ="VARCHAR(50)")]
+        public string? ProductLineId { get; set; }
         public ProductLine ProductLine { get; set; }
 
         [Column(TypeName = "varchar(10)")]
