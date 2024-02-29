@@ -54,7 +54,8 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
             //}
         }
-        public List<MODEL.Customer> CustomersFromFrance()
+		#region Eric
+		public List<MODEL.Customer> CustomersFromFrance()
         {
             // Query customers from France order by credit limit
             return context.Customers.Where(c => c.Country == "France").OrderBy(c => c.CreditLimit).ToList();
@@ -92,8 +93,9 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                   })
                  .ToList();
         }
-
-        public void AddOrders(string file)
+		#endregion
+		#region adds
+		public void AddOrders(string file)
         {
 			StreamReader sr = new StreamReader(file);
 
@@ -114,10 +116,8 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 				string comments = fields[5] == "NULL" ? null : fields[5].Trim('"');
 				int customerKey = int.Parse(fields[6].Trim('"'));
 
-				// Find the corresponding Customer based on the customerKey
 				Customer customer = context.Customers.Find(customerKey);				
 
-				// Create a new Order object
 				Order order = new Order(orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerKey);
 				order.Customer = customer;
 
@@ -127,7 +127,6 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 				line = sr.ReadLine();
 			}
 
-			// Close the StreamReader
 			sr.Close();
 		}
 
@@ -163,12 +162,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 				double creditLimit = double.Parse(fields[12].Trim('"'), CultureInfo.InvariantCulture);
 
 				Employee salesRep = context.Employees.Find(salesRepKey);
-				//if (salesRep == null)
-				//{
-				//	Employee tmp = new Employee(0, "null", "null", "null", "null", "null",0, "null");
-				//	context.Employees.Add(tmp);
-				//	context.SaveChanges();
-				//}
+
 				Customer customer = new Customer(customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepKey, creditLimit);
 				customer.SalesRep = salesRep;
 
@@ -178,7 +172,6 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 				line = sr.ReadLine();
 			}
 
-			// Close the StreamReader
 			sr.Close();
 		}
         public void AddEmployees(string textFile)
@@ -382,8 +375,9 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             }
             sr.Close();
         }
-
-        public object ProductsMainInfo()
+		#endregion
+		#region Eloy
+		public object ProductsMainInfo()
         {
             throw new NotImplementedException();
         }
@@ -402,8 +396,9 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         {
             throw new NotImplementedException();
         }
-
-        public List<Employee> EmployeesPerBoss()
+		#endregion
+		#region Arnau
+		public List<Employee> EmployeesPerBoss()
         {
             throw new NotImplementedException();
         }
@@ -422,5 +417,6 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         {
             throw new NotImplementedException();
         }
-    }
+		#endregion
+	}
 } 

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CODE_FIRST_Fogliano_Eloy.Migrations
 {
     [DbContext(typeof(ClassicModelsDBContext))]
-    [Migration("20240229022953_fifth")]
-    partial class fifth
+    [Migration("20240229023715_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

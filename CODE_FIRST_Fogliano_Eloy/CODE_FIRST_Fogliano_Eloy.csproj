@@ -46,12 +46,50 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="FILES\CUSTOMERS.csv" />
+    <None Remove="FILES\EMPLOYEES.csv" />
+    <None Remove="FILES\OFFICES.csv" />
+    <None Remove="FILES\ORDERDETAILS.csv" />
+    <None Remove="FILES\ORDERS.csv" />
+    <None Remove="FILES\PAYMENTS.csv" />
+    <None Remove="FILES\PRODUCTLINES.csv" />
+    <None Remove="FILES\PRODUCTS.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.32" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.32">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="FILES\CUSTOMERS.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FILES\EMPLOYEES.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FILES\OFFICES.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FILES\ORDERDETAILS.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FILES\ORDERS.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FILES\PAYMENTS.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FILES\PRODUCTLINES.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FILES\PRODUCTS.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

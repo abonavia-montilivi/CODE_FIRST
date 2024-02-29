@@ -33,8 +33,8 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                 {
                     productLine = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     TextDescription = table.Column<string>(type: "varchar(4000)", nullable: false),
-                    HtmlDescription = table.Column<string>(type: "mediumtext", nullable: false),
-                    Image = table.Column<byte[]>(type: "mediumblob", nullable: false)
+                    HtmlDescription = table.Column<string>(type: "mediumtext", nullable: true),
+                    Image = table.Column<byte[]>(type: "mediumblob", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,8 +52,8 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                     Extension = table.Column<string>(type: "varchar(10)", nullable: false),
                     Email = table.Column<string>(type: "varchar(100)", nullable: false),
                     OfficeKey = table.Column<string>(type: "varchar(10)", nullable: false),
-                    ReportsToKey = table.Column<int>(nullable: false),
-                    ReportsToEmployeeNumber = table.Column<int>(nullable: false),
+                    ReportsToKey = table.Column<int>(nullable: true),
+                    ReportsToEmployeeNumber = table.Column<int>(nullable: true),
                     JobTitle = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
@@ -70,7 +70,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         column: x => x.ReportsToEmployeeNumber,
                         principalTable: "Employees",
                         principalColumn: "EmployeeNumber",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,13 +109,13 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                     ContactFirstName = table.Column<string>(type: "varchar(50)", nullable: false),
                     Phone = table.Column<string>(type: "varchar(50)", nullable: false),
                     AddressLine1 = table.Column<string>(type: "varchar(50)", nullable: false),
-                    AddressLine2 = table.Column<string>(type: "varchar(50)", nullable: false),
+                    AddressLine2 = table.Column<string>(type: "varchar(50)", nullable: true),
                     City = table.Column<string>(type: "varchar(50)", nullable: false),
-                    State = table.Column<string>(type: "varchar(50)", nullable: false),
-                    PostalCode = table.Column<string>(type: "varchar(15)", nullable: false),
+                    State = table.Column<string>(type: "varchar(50)", nullable: true),
+                    PostalCode = table.Column<string>(type: "varchar(15)", nullable: true),
                     Country = table.Column<string>(type: "varchar(50)", nullable: false),
-                    SalesRepKey = table.Column<int>(nullable: false),
-                    SalesRepEmployeeNumber = table.Column<int>(nullable: false),
+                    SalesRepKey = table.Column<int>(nullable: true),
+                    SalesRepEmployeeNumber = table.Column<int>(nullable: true),
                     CreditLimit = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
@@ -126,7 +126,7 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         column: x => x.SalesRepEmployeeNumber,
                         principalTable: "Employees",
                         principalColumn: "EmployeeNumber",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,9 +137,9 @@ namespace CODE_FIRST_Fogliano_Eloy.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     OrderDate = table.Column<DateTime>(type: "date", nullable: false),
                     RequiredDate = table.Column<DateTime>(type: "date", nullable: false),
-                    ShippedDate = table.Column<DateTime>(type: "date", nullable: false),
+                    ShippedDate = table.Column<DateTime>(type: "date", nullable: true),
                     Status = table.Column<string>(type: "varchar(15)", nullable: false),
-                    Comments = table.Column<string>(type: "text", nullable: false),
+                    Comments = table.Column<string>(type: "text", nullable: true),
                     CustomerKey = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
