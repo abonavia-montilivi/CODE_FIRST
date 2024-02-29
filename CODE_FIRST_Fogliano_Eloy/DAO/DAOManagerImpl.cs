@@ -399,7 +399,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         }
 		#endregion
 		#region Arnau
-		public List<object> EmployeesPerBoss()
+		public List<Object> EmployeesPerBoss()
 		{
 			return context.Employees
                 .GroupBy(e => e.ReportsToKey)
@@ -411,20 +411,48 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 	               .ToList<object>();
 		}
 
-		public object ProductsForEachProductLine()
+		public List<Object> ProductsForEachProductLine()
         {
-            throw new NotImplementedException();
-        }
+			var productsByProductLine = (from p in context.Products
+										 join pl in context.ProductLines on p.ProductLineId equals pl.productLine
+										 select new
+										 {
+											 ProductLine = pl.productLine,
+											 ProductName = p.ProductName,
+                                             ProductDesctription = p.ProductDescription
+										 }).ToList<object>();
 
-        public object ProductsYetToBuyFromACustomer(Customer customer)
-        {
-            throw new NotImplementedException();
-        }
+			return productsByProductLine;
+		}
 
-        public List<Employee> BestSellerEmployees()
+		public List<Product> AllProductsBoughtByACustomer(int customerId)
+		{
+			var productsBoughtByCustomer = (from p in context.Products
+											join d in context.OrderDetails on p.ProductCode equals d.ProductCode
+											join o in context.Orders on d.OrderNumber equals o.OrderNumber
+											where o.CustomerKey == customerId
+											select p).Distinct().ToList();
+
+			return productsBoughtByCustomer;
+		}
+
+		public List<Object> BestSellerEmployees()
         {
-            throw new NotImplementedException();
-        }
+			var totalMoneyEarnedByEmployee = (from p in context.Payments
+											  join c in context.Customers on p.CustomerNumber equals c.CustomerNumber
+											  join e in context.Employees on c.SalesRepKey equals e.EmployeeNumber
+											  group new { p, e } by new { e.LastName } into g
+											  select new
+											  {
+												  EMPLOYEE_LAST_NAME = g.Key.LastName,
+												  TOTAL_MONEY_EARNED = g.Sum(x => x.p.Amount)
+											  })
+									  .OrderByDescending(x => x.TOTAL_MONEY_EARNED)
+									  .Take(5)
+									  .ToList<object>();
+
+			return totalMoneyEarnedByEmployee;
+		}
 		#endregion
 	}
 } 

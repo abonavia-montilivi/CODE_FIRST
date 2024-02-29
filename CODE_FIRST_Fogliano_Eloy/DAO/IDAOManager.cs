@@ -33,9 +33,9 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 
 		//Arnau Queries
 		public List<Object> EmployeesPerBoss();
-		public Object ProductsForEachProductLine();
-		public Object ProductsYetToBuyFromACustomer(MODEL.Customer customer);
-		public List<Employee> BestSellerEmployees();
+		public List<Object> ProductsForEachProductLine();
+		public List<MODEL.Product> AllProductsBoughtByACustomer(int customerId);
+		public List<Object> BestSellerEmployees();
 
 
 	}
