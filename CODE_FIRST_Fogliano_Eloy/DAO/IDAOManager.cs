@@ -38,7 +38,5 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 		public List<Object> ProductsForEachProductLine();
 		public List<MODEL.Product> AllProductsBoughtByACustomer(int customerId);
 		public List<Object> BestSellerEmployees();
-
-
 	}
 }
