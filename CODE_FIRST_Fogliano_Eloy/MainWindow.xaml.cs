@@ -33,14 +33,11 @@ namespace CODE_FIRST_Fogliano_Eloy
             //daoManager.AddPayments("PAYMENTS.csv");
             //daoManager.AddOrders("ORDERS.csv");
             //daoManager.AddOrderDetails("ORDERDETAILS.csv");
-            //var employees = daoManager.EmployeesPerBoss();
-
-            var orders = daoManager.GetOrders();
-            Order order = orders.FirstOrDefault();
-            var productsXOrder = daoManager.ProductsPerOrder(order);
-
-            var productsPopulars = daoManager.PopularProducts();
-
+            // var employees = daoManager.EmployeesPerBoss();
+           var customers = daoManager.CustomersFromFrance();
+           var productsByQuantity = daoManager.ProductsByQuantityAndMsrp();
+          var paymentsPerCustomer = daoManager.PaymentsPerCustomer();
+          var employeesPerOffice = daoManager.EmployeesPerOffice();
             //Console.WriteLine();
 
 
