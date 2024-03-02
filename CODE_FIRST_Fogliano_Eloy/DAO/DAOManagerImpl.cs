@@ -456,6 +456,11 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         }
 		#endregion
 		#region Arnau
+		public List<Customer> GetCustomers()
+		{
+			List<Customer> customers = context.Customers.ToList();
+			return customers;
+		}
 		public List<Object> EmployeesPerBoss()
 		{
 			return context.Employees
