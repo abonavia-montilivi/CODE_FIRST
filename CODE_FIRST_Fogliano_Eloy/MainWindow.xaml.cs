@@ -1,4 +1,5 @@
 ﻿using CODE_FIRST_Fogliano_Eloy.DAO;
+using CODE_FIRST_Fogliano_Eloy.MODEL;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,8 +33,15 @@ namespace CODE_FIRST_Fogliano_Eloy
             //daoManager.AddPayments("PAYMENTS.csv");
             //daoManager.AddOrders("ORDERS.csv");
             //daoManager.AddOrderDetails("ORDERDETAILS.csv");
-            var employees = daoManager.EmployeesPerBoss();
-            Console.WriteLine();
+            //var employees = daoManager.EmployeesPerBoss();
+
+            var orders = daoManager.GetOrders();
+            Order order = orders.FirstOrDefault();
+            var productsXOrder = daoManager.ProductsPerOrder(order);
+
+            var productsPopulars = daoManager.PopularProducts();
+
+            //Console.WriteLine();
 
 
         }

@@ -376,26 +376,57 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             }
             sr.Close();
         }
-		#endregion
-		#region Eloy
-		public object ProductsMainInfo()
+        #endregion
+        #region Eloy
+        public List<Product> PopularProducts()
         {
-            throw new NotImplementedException();
+            // Obtenir tots els productes més comprats
+            var popularProducts = (from orderDetail in context.OrderDetails
+                                   join product in context.Products on orderDetail.ProductCode equals product.ProductCode
+                                   orderby context.OrderDetails.Count(od => od.ProductCode == product.ProductCode) descending
+                                   select product)
+                          .Take(5)
+                          .ToList();
+
+            return popularProducts;
         }
 
-        public List<Product> ProductsPerOrder()
+        public List<Order> GetOrders()
         {
-            throw new NotImplementedException();
+            List<Order> orders = context.Orders.ToList();
+            return orders;
+        }
+
+        public List<Product> ProductsPerOrder(Order order)
+        {
+            // Obtenir tots els productes d'una ordre especifica
+            List<Product> products = (from orderDetail in context.OrderDetails
+                                      join product in context.Products on orderDetail.ProductCode equals product.ProductCode
+                                      where orderDetail.OrderNumber == order.OrderNumber
+                                      select product).ToList();
+
+            return products;
         }
 
         public List<Order> OrdersBetweenDates(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            // Obtenir ordres entre dues dates
+            List<Order> ordersBetweenDates = context.Orders
+                                            .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate)
+                                            .ToList();
+
+            return ordersBetweenDates;
         }
 
         public List<Product> Top10MostExpensiveProducts()
         {
-            throw new NotImplementedException();
+            // Obtenir els 10 productes més cars
+            List<Product> top10Products = context.Products
+                                        .OrderByDescending(p => p.BuyPrice)
+                                        .Take(10)
+                                        .ToList();
+
+            return top10Products;
         }
 		#endregion
 		#region Arnau

@@ -26,8 +26,10 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 		public Object EmployeesPerOffice();
 
 		//Eloy Queries
-		public Object ProductsMainInfo();
-		public List<MODEL.Product> ProductsPerOrder();
+		public List<Order> GetOrders();
+
+        public List<MODEL.Product> PopularProducts();
+		public List<MODEL.Product> ProductsPerOrder(Order order);
 		public List<MODEL.Order> OrdersBetweenDates(DateTime startDate, DateTime endDate);
 		public List<MODEL.Product> Top10MostExpensiveProducts();
 
@@ -36,7 +38,5 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 		public Object ProductsForEachProductLine();
 		public Object ProductsYetToBuyFromACustomer(MODEL.Customer customer);
 		public List<Employee> BestSellerEmployees();
-
-
 	}
 }
