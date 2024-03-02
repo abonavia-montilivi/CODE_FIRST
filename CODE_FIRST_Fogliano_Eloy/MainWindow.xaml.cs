@@ -38,7 +38,7 @@ namespace CODE_FIRST_Fogliano_Eloy
            var productsByQuantity = daoManager.ProductsByQuantityAndMsrp();
           var paymentsPerCustomer = daoManager.PaymentsPerCustomer();
           var employeesPerOffice = daoManager.EmployeesPerOffice();
-            //Console.WriteLine();
+            Console.WriteLine();
 
 
         }
