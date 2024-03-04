@@ -23,11 +23,11 @@
                                   ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding CustomerNumber, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding CustomerName, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Contact LastName" Binding="{Binding ContactLastName, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Contact FirstName" Binding="{Binding ContactFirstName, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Length" Binding="{Binding Country, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -48,11 +48,10 @@
                                   ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding ProductCode, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding ProductName, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding QuantityInStock, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="MSRP" Binding="{Binding MSRP, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -73,11 +72,10 @@
                                   ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                        <DataGridTextColumn Header="CustomerId" Binding="{Binding CustomerNumber, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="CheckNumber" Binding="{Binding CheckNumber, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="PaymentDate" Binding="{Binding PaymentDate, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
