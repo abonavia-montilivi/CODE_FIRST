@@ -34,10 +34,10 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 		public List<MODEL.Product> Top10MostExpensiveProducts();
 
 		//Arnau Queries
-		public List<Object> EmployeesPerBoss();
-		public List<Object> ProductsForEachProductLine();
+		public List<VIEWMODEL.ViewModelEmployeesPerBoss> EmployeesPerBoss();
+		public List<VIEWMODEL.ViewModelProductsForEachProductLine> ProductsForEachProductLine();
 		public List<Customer> GetCustomers();
 		public List<MODEL.Product> AllProductsBoughtByACustomer(int customerId);
-		public List<Object> BestSellerEmployees();
+		public List<VIEWMODEL.ViewModelBestSellerEmployees> BestSellerEmployees();
 	}
 }
