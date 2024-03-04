@@ -38,7 +38,7 @@ namespace CODE_FIRST_Fogliano_Eloy
             var orders = daoManager.GetOrders();
             Order order = orders.FirstOrDefault();
             var productsXOrder = daoManager.ProductsPerOrder(order);
-
+                    
             var productsPopulars = daoManager.PopularProducts();
 
             // var employees = daoManager.EmployeesPerBoss();

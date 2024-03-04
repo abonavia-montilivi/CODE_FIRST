@@ -60,7 +60,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         public List<MODEL.Customer> CustomersFromFrance()
         {
             var customersFromFrance = context.Customers
-                .Where(c => c.Country == "France")
+                .Where(c => c.Country == "France") 
                 .OrderBy(c => c.CreditLimit)
                 .ToList();
 
