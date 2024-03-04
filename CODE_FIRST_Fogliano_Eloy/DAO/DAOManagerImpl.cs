@@ -1,4 +1,5 @@
 ﻿using CODE_FIRST_Fogliano_Eloy.MODEL;
+using CODE_FIRST_Fogliano_Eloy.VIEWMODEL;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -72,14 +73,14 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             //filtering and sorting
             return context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
         }
-        public List<object> PaymentsPerCustomer()
+        public List<VIEWMODEL.ViewModelPaymentPerCustomer> PaymentsPerCustomer()
         {
             //join
             return context.Customers
                 .Join(context.Payments,
                     customer => customer.CustomerNumber,
                     payment => payment.CustomerNumber,
-                    (customer, payment) => new
+                    (customer, payment) => new VIEWMODEL.ViewModelPaymentPerCustomer
                     {
                         CustomerName = customer.CustomerName,
                         PaymentAmount = payment.Amount
@@ -89,13 +90,13 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                     CustomerName = item.CustomerName,
                     PaymentAmount = item.PaymentAmount
                 })
-                .Cast<object>()
+                .Cast<VIEWMODEL.ViewModelPaymentPerCustomer>()
                 .ToList();
         }
 
 
 
-        public List<object> EmployeesPerOffice()
+        public List<VIEWMODEL.ViewModelEmployeesPerOffice> EmployeesPerOffice()
         {
             var employeesWithOffice = context.Employees
                 .Join(
@@ -112,7 +113,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                     OfficeCode = g.Key.OfficeCode,
                     EmployeeCount = g.Count()
                 })
-                .Cast<object>()
+                .Cast<VIEWMODEL.ViewModelEmployeesPerOffice>()
                 .ToList();
 
             return employeesPerOffice;

@@ -22,8 +22,8 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 		//Eric Queries
 		public List<MODEL.Customer> CustomersFromFrance();
 		public List<MODEL.Product> ProductsByQuantityAndMsrp();
-		public List<Object> PaymentsPerCustomer();
-		public List<Object> EmployeesPerOffice();
+		public List<VIEWMODEL.ViewModelPaymentPerCustomer> PaymentsPerCustomer();
+		public List<VIEWMODEL.ViewModelEmployeesPerOffice> EmployeesPerOffice();
 
 		//Eloy Queries
 		public List<Order> GetOrders();

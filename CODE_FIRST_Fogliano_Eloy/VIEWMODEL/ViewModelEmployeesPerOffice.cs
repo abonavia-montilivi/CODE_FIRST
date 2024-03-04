@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CODE_FIRST_Fogliano_Eloy.VIEWMODEL
 {
-    class ViewModelEmployeesPerOffice
+  public  class ViewModelEmployeesPerOffice
     {
+        public string OfficeCode {  get; set; }
+        public string OfficeKey { get; set; }
+
     }
 }
