@@ -8,7 +8,7 @@ namespace CODE_FIRST_Fogliano_Eloy.VIEWMODEL
 {
     public class ViewModelEmployeesPerBoss
     {
-        public int bossId { get; set; }
-        public int numEmployees { get; set;}
+        public int? BossId { get; set; }
+        public int NumEmployees { get; set;}
     }
 }
