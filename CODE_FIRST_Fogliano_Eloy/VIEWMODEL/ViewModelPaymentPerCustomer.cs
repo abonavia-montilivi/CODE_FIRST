@@ -11,5 +11,6 @@ namespace CODE_FIRST_Fogliano_Eloy.VIEWMODEL
         public int CustomerNumber { get; set; }
         public string CustomerName { get; set; }
         public double PaymentAmount { get; set; }
+        public DateTime PaymentDate { get; set; }
     }
 }

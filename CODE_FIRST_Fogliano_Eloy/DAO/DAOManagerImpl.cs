@@ -71,7 +71,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         public List<MODEL.Product> ProductsByQuantityAndMsrp()
         {
             //filtering and sorting
-            return context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
+            return context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 10000).OrderBy(p => p.ProductName).ToList();
         }
         public List<VIEWMODEL.ViewModelPaymentPerCustomer> PaymentsPerCustomer()
         {
@@ -82,15 +82,10 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                     payment => payment.CustomerNumber,
                     (customer, payment) => new VIEWMODEL.ViewModelPaymentPerCustomer
                     {
+                        CustomerNumber = customer.CustomerNumber,
                         CustomerName = customer.CustomerName,
                         PaymentAmount = payment.Amount
                     })
-                .Select(item => new
-                {
-                    CustomerName = item.CustomerName,
-                    PaymentAmount = item.PaymentAmount
-                })
-                .Cast<VIEWMODEL.ViewModelPaymentPerCustomer>()
                 .ToList();
         }
 
@@ -99,21 +94,20 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         public List<VIEWMODEL.ViewModelEmployeesPerOffice> EmployeesPerOffice()
         {
             var employeesWithOffice = context.Employees
-                .Join(
-                    context.Offices,
-                    e => e.OfficeKey,
-                    o => o.OfficeCode,
-                    (e, o) => new { Employee = e, Office = o })
-                .ToList();
+            .Join(
+                context.Offices,
+                e => e.OfficeKey,
+                o => o.OfficeCode,
+                (e, o) => new { Employee = e, Office = o })
+            .ToList(); // Traer los datos a la memoria
 
             var employeesPerOffice = employeesWithOffice
                 .GroupBy(eo => eo.Office)
-                .Select(g => new
+                .Select(g => new VIEWMODEL.ViewModelEmployeesPerOffice
                 {
                     OfficeCode = g.Key.OfficeCode,
                     EmployeeCount = g.Count()
                 })
-                .Cast<VIEWMODEL.ViewModelEmployeesPerOffice>()
                 .ToList();
 
             return employeesPerOffice;

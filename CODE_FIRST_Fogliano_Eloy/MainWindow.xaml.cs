@@ -1,5 +1,6 @@
 ﻿using CODE_FIRST_Fogliano_Eloy.DAO;
 using CODE_FIRST_Fogliano_Eloy.MODEL;
+using CODE_FIRST_Fogliano_Eloy.VIEWMODEL;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,11 +21,25 @@ namespace CODE_FIRST_Fogliano_Eloy
     {
         private MODEL.ClassicModelsDBContext modelDBContext = new MODEL.ClassicModelsDBContext();
         private IDAOManager daoManager = null;
+        
+        //Eloy
         public List<Product> PopularProducts;
         public List<Product> ProductsXOrder;
         public List<Order> OrdersBetweenDates;
         public List<Product> Top10MostExpensiveProducts;
-        
+
+        //Arnau
+        public List<ViewModelEmployeesPerBoss> ViewModelEmployeesPerBoss;
+        public List<ViewModelProductsForEachProductLine> ViewModelProductsForEachProductLine;
+        public List<Product> AllProductsBoughtByACustomer;
+        public List<ViewModelBestSellerEmployees> ViewModelBestSellerEmployees;
+
+        //Eric
+        public List<Customer> CustomersFromFrance;
+        public List<Product> ProductsByQuantityAndMsrp;
+        public List<ViewModelPaymentPerCustomer> PaymentsPerCustomer;
+        public List<ViewModelEmployeesPerOffice> EmployeesPerOffice;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -56,12 +71,41 @@ namespace CODE_FIRST_Fogliano_Eloy
             dgTop10MostExpensiveProducts.ItemsSource = Top10MostExpensiveProducts;
             #endregion
 
-            // var employees = daoManager.EmployeesPerBoss();
-            //var customers = daoManager.CustomersFromFrance();
-            //var productsByQuantity = daoManager.ProductsByQuantityAndMsrp();
-            //var paymentsPerCustomer = daoManager.PaymentsPerCustomer();
-            //var employeesPerOffice = daoManager.EmployeesPerOffice();
-            //Console.WriteLine();
+            #region Arnau
+            ViewModelEmployeesPerBoss = daoManager.EmployeesPerBoss();
+            dgEmployeesPerBoss.DataContext = this;
+            dgEmployeesPerBoss.ItemsSource = ViewModelEmployeesPerBoss;
+
+            ViewModelProductsForEachProductLine = daoManager.ProductsForEachProductLine();
+            dgProductsByProductLines.DataContext = this;
+            dgProductsByProductLines.ItemsSource = ViewModelProductsForEachProductLine;
+
+            List<Customer> rawCustomers = daoManager.GetCustomers();
+            cmbCustomers.ItemsSource = rawCustomers;
+            cmbCustomers.DisplayMemberPath = "CustomerName"; // Que mostri només el Name del customer en el combobox
+
+            ViewModelBestSellerEmployees = daoManager.BestSellerEmployees();
+            dgBestSellerEmployees.DataContext = this;
+            dgBestSellerEmployees.ItemsSource = ViewModelBestSellerEmployees;
+            #endregion
+
+            #region Eric
+            CustomersFromFrance = daoManager.CustomersFromFrance();
+            dgCustomersFromFrance.DataContext = this;
+            dgCustomersFromFrance.ItemsSource = CustomersFromFrance;
+
+            ProductsByQuantityAndMsrp = daoManager.ProductsByQuantityAndMsrp();
+            dgProductsByQuantityAndMsrp.DataContext = this;
+            dgProductsByQuantityAndMsrp.ItemsSource = ProductsByQuantityAndMsrp;
+
+            PaymentsPerCustomer = daoManager.PaymentsPerCustomer();
+            dgPaymentsPerCustomer.DataContext = this;
+            dgPaymentsPerCustomer.ItemsSource = PaymentsPerCustomer;
+
+            EmployeesPerOffice = daoManager.EmployeesPerOffice();
+            dgEmployeesPerOffice.DataContext = this;
+            dgEmployeesPerOffice.ItemsSource = EmployeesPerOffice;
+            #endregion
         }
 
         private void cmbOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -82,9 +126,6 @@ namespace CODE_FIRST_Fogliano_Eloy
             if (dpOrderDate2.SelectedDate != null)
             date2 = dpOrderDate2.SelectedDate.Value;
             
-            //date1 = DateTime.Parse("2005-05-31");
-            //date2 = DateTime.Now;
-            
             OrdersBetweenDates = daoManager.OrdersBetweenDates(date1, date2);
             dgOrdersBetweenDates.DataContext = this;
             dgOrdersBetweenDates.ItemsSource = OrdersBetweenDates;
@@ -92,7 +133,10 @@ namespace CODE_FIRST_Fogliano_Eloy
 
 		private void cmbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-
-		}
+            Customer customer = cmbCustomers.SelectedItem as Customer;
+            AllProductsBoughtByACustomer = daoManager.AllProductsBoughtByACustomer(customer.CustomerNumber);
+            dgAllProductsBoughtByACustomer.DataContext = this;
+            dgAllProductsBoughtByACustomer.ItemsSource = AllProductsBoughtByACustomer;
+        }
 	}
 }

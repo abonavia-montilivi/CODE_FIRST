@@ -10,6 +10,7 @@ namespace CODE_FIRST_Fogliano_Eloy.VIEWMODEL
     {
         public string OfficeCode {  get; set; }
         public string OfficeKey { get; set; }
+        public int EmployeeCount { get; set; }
 
     }
 }

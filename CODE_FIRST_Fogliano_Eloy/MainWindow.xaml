@@ -10,8 +10,8 @@
         <TabItem Header="CustomersFromFrance">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -19,15 +19,16 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <TextBlock Grid.ColumnSpan="4" Text="Customers From France"/>
                 <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgCustomersFromFrance"
-                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  ItemsSource="{Binding CustomersFromFrance}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding CustomerNumber, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding CustomerName, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Contact LastName" Binding="{Binding ContactLastName, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Contact FirstName" Binding="{Binding ContactFirstName, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Length" Binding="{Binding Country, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="CustomersFromFranceCustomerNumber" Header="Customer Number" Binding="{Binding CustomerNumber, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="CustomersFromFranceCustomerName" Header="Customer Name" Binding="{Binding CustomerName, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="CustomersFromFranceContactLastName" Header="Contact LastName" Binding="{Binding ContactLastName, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="CustomersFromFranceCountry" Header="Country" Binding="{Binding Country, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="CustomersFromFranceCreditLimit" Header="Credit Limit" Binding="{Binding CreditLimit, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -35,8 +36,8 @@
         <TabItem Header="ProductsByQuantityAndMsrp">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -44,14 +45,15 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <TextBlock Grid.ColumnSpan="4" Text="Products By Quantity And Msrp"/>
                 <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgProductsByQuantityAndMsrp"
-                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  ItemsSource="{Binding ProductsByQuantityAndMsrp}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding ProductCode, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding ProductName, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding QuantityInStock, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="MSRP" Binding="{Binding MSRP, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ProductsByQuantityAndMsrpQuantityInStock" Header="Quantity" Binding="{Binding QuantityInStock, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ProductsByQuantityAndMsrpMSRP" Header="MSRP" Binding="{Binding MSRP, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ProductsByQuantityAndMsrpProductName" Header="Product Name" Binding="{Binding ProductName, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ProductsByQuantityAndMsrpProductDescription" Header="Product Description" Binding="{Binding ProductDescription, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -59,8 +61,8 @@
         <TabItem Header="PaymentsPerCustomer">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -68,14 +70,15 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <TextBlock Grid.ColumnSpan="4" Text="Payments Per Customer"/>
                 <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgPaymentsPerCustomer"
-                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  ItemsSource="{Binding PaymentsPerCustomer}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="CustomerId" Binding="{Binding CustomerNumber, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="CheckNumber" Binding="{Binding CheckNumber, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="PaymentDate" Binding="{Binding PaymentDate, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="PaymentsPerCustomerNumber" Header="Customer Number" Binding="{Binding CustomerNumber, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="PaymentsPerCustomerCustomerName" Header="Customer Name" Binding="{Binding CustomerName, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="PaymentsPerCustomerAmount" Header="Amount" Binding="{Binding PaymentAmount, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="PaymentsPerCustomerPaymentDate" Header="Payment Date" Binding="{Binding PaymentDate, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -83,24 +86,23 @@
         <TabItem Header="EmployeesPerOffice">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="199*"/>
+                    <ColumnDefinition Width="199*"/>
+                    <ColumnDefinition Width="178*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="199*"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgEmployeesPerOffice"
-                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
-                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                <TextBlock Grid.ColumnSpan="5" Text="Employees Per Office"/>
+                <DataGrid Grid.ColumnSpan="5" Name="dgEmployeesPerOffice"
+                                  ItemsSource="{Binding EmployeesPerOffice}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell" Margin="0,61,0,0" Grid.RowSpan="2">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                        <DataGridTextColumn x:Name="EmployeesPerOfficeOfficeCode" Header="Office Code" Binding="{Binding OfficeCode, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="EmployeesPerOfficeEmployeeCount" Header="Employee Count" Binding="{Binding EmployeeCount, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -306,5 +308,5 @@
                 </DataGrid>
             </Grid>
         </TabItem>
-    </TabControl>    
+    </TabControl>
 </Window>
