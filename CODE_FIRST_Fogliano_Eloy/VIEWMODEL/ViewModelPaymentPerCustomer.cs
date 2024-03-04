@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CODE_FIRST_Fogliano_Eloy.VIEWMODEL
 {
-    class ViewModelPaymentPerCustomer
+    public class ViewModelPaymentPerCustomer
     {
     }
 }
