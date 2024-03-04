@@ -1,4 +1,5 @@
 ﻿using CODE_FIRST_Fogliano_Eloy.MODEL;
+using CODE_FIRST_Fogliano_Eloy.VIEWMODEL;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         public List<MODEL.Customer> CustomersFromFrance()
         {
             var customersFromFrance = context.Customers
-                .Where(c => c.Country == "France")
+                .Where(c => c.Country == "France") 
                 .OrderBy(c => c.CreditLimit)
                 .ToList();
 
@@ -72,14 +73,14 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
             //filtering and sorting
             return context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
         }
-        public List<object> PaymentsPerCustomer()
+        public List<VIEWMODEL.ViewModelPaymentPerCustomer> PaymentsPerCustomer()
         {
             //join
             return context.Customers
                 .Join(context.Payments,
                     customer => customer.CustomerNumber,
                     payment => payment.CustomerNumber,
-                    (customer, payment) => new
+                    (customer, payment) => new VIEWMODEL.ViewModelPaymentPerCustomer
                     {
                         CustomerName = customer.CustomerName,
                         PaymentAmount = payment.Amount
@@ -89,13 +90,13 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                     CustomerName = item.CustomerName,
                     PaymentAmount = item.PaymentAmount
                 })
-                .Cast<object>()
+                .Cast<VIEWMODEL.ViewModelPaymentPerCustomer>()
                 .ToList();
         }
 
 
 
-        public List<object> EmployeesPerOffice()
+        public List<VIEWMODEL.ViewModelEmployeesPerOffice> EmployeesPerOffice()
         {
             var employeesWithOffice = context.Employees
                 .Join(
@@ -112,7 +113,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                     OfficeCode = g.Key.OfficeCode,
                     EmployeeCount = g.Count()
                 })
-                .Cast<object>()
+                .Cast<VIEWMODEL.ViewModelEmployeesPerOffice>()
                 .ToList();
 
             return employeesPerOffice;
@@ -461,28 +462,28 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 			List<Customer> customers = context.Customers.ToList();
 			return customers;
 		}
-		public List<Object> EmployeesPerBoss()
+		public List<VIEWMODEL.ViewModelEmployeesPerBoss> EmployeesPerBoss()
 		{
 			return context.Employees
                 .GroupBy(e => e.ReportsToKey)
-	               .Select(g => new
-	               {
-		               Boss = g.Key,
-		               Employees = g.Count()
+	               .Select(g => new VIEWMODEL.ViewModelEmployeesPerBoss
+				   {
+		               BossId = g.Key,
+		               NumEmployees = g.Count()
 	               })
-	               .ToList<object>();
+	               .ToList<VIEWMODEL.ViewModelEmployeesPerBoss>();
 		}
 
-		public List<Object> ProductsForEachProductLine()
+		public List<VIEWMODEL.ViewModelProductsForEachProductLine> ProductsForEachProductLine()
         {
 			var productsByProductLine = (from p in context.Products
 										 join pl in context.ProductLines on p.ProductLineId equals pl.productLine
-										 select new
+										 select new VIEWMODEL.ViewModelProductsForEachProductLine
 										 {
 											 ProductLine = pl.productLine,
 											 ProductName = p.ProductName,
                                              ProductDesctription = p.ProductDescription
-										 }).ToList<object>();
+										 }).ToList<VIEWMODEL.ViewModelProductsForEachProductLine>();
 
 			return productsByProductLine;
 		}
@@ -498,20 +499,20 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
 			return productsBoughtByCustomer;
 		}
 
-		public List<Object> BestSellerEmployees()
+		public List<VIEWMODEL.ViewModelBestSellerEmployees> BestSellerEmployees()
         {
 			var totalMoneyEarnedByEmployee = (from p in context.Payments
 											  join c in context.Customers on p.CustomerNumber equals c.CustomerNumber
 											  join e in context.Employees on c.SalesRepKey equals e.EmployeeNumber
 											  group new { p, e } by new { e.LastName } into g
-											  select new
+											  select new VIEWMODEL.ViewModelBestSellerEmployees
 											  {
 												  EMPLOYEE_LAST_NAME = g.Key.LastName,
 												  TOTAL_MONEY_EARNED = g.Sum(x => x.p.Amount)
 											  })
 									  .OrderByDescending(x => x.TOTAL_MONEY_EARNED)
 									  .Take(5)
-									  .ToList<object>();
+									  .ToList<VIEWMODEL.ViewModelBestSellerEmployees>();
 
 			return totalMoneyEarnedByEmployee;
 		}

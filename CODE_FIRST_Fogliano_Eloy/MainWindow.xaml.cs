@@ -89,5 +89,10 @@ namespace CODE_FIRST_Fogliano_Eloy
             dgOrdersBetweenDates.DataContext = this;
             dgOrdersBetweenDates.ItemsSource = OrdersBetweenDates;
         }
-    }
+
+		private void cmbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+	}
 }
