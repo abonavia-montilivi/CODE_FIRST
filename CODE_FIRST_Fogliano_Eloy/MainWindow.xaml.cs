@@ -20,6 +20,11 @@ namespace CODE_FIRST_Fogliano_Eloy
     {
         private MODEL.ClassicModelsDBContext modelDBContext = new MODEL.ClassicModelsDBContext();
         private IDAOManager daoManager = null;
+        public List<Product> PopularProducts;
+        public List<Product> ProductsXOrder;
+        public List<Order> OrdersBetweenDates;
+        public List<Product> Top10MostExpensiveProducts;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -35,20 +40,54 @@ namespace CODE_FIRST_Fogliano_Eloy
             //daoManager.AddOrderDetails("ORDERDETAILS.csv");
             //var employees = daoManager.EmployeesPerBoss();
 
-            var orders = daoManager.GetOrders();
-            Order order = orders.FirstOrDefault();
-            var productsXOrder = daoManager.ProductsPerOrder(order);
 
-            var productsPopulars = daoManager.PopularProducts();
+            #region Eloy
+            PopularProducts = daoManager.PopularProducts();
+            dgPopularProducts.DataContext = this;
+            dgPopularProducts.ItemsSource = PopularProducts;
+
+            //Possar les ordres al CMB
+            List<Order> orders = daoManager.GetOrders();
+            cmbOrders.ItemsSource = orders;
+            cmbOrders.DisplayMemberPath = "OrderNumber"; // Que mostri només el OrderNumber de la ordre en el combobox
+
+            Top10MostExpensiveProducts = daoManager.Top10MostExpensiveProducts();
+            dgTop10MostExpensiveProducts.DataContext = this;
+            dgTop10MostExpensiveProducts.ItemsSource = Top10MostExpensiveProducts;
+            #endregion
 
             // var employees = daoManager.EmployeesPerBoss();
-            var customers = daoManager.CustomersFromFrance();
-            var productsByQuantity = daoManager.ProductsByQuantityAndMsrp();
-            var paymentsPerCustomer = daoManager.PaymentsPerCustomer();
-            var employeesPerOffice = daoManager.EmployeesPerOffice();
+            //var customers = daoManager.CustomersFromFrance();
+            //var productsByQuantity = daoManager.ProductsByQuantityAndMsrp();
+            //var paymentsPerCustomer = daoManager.PaymentsPerCustomer();
+            //var employeesPerOffice = daoManager.EmployeesPerOffice();
             //Console.WriteLine();
+        }
 
+        private void cmbOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            Order order = cmbOrders.SelectedItem as Order;
+            ProductsXOrder = daoManager.ProductsPerOrder(order);
+            dgProductsPerOrder.DataContext = this;
+            dgProductsPerOrder.ItemsSource = ProductsXOrder;
+        }
 
+        private void btnOrdersBetween_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime date1 = DateTime.Parse("2001-01-01"); ;
+            DateTime date2 = DateTime.Now;
+            if (dpOrderDate1.SelectedDate != null) 
+            date1 = dpOrderDate1.SelectedDate.Value;
+            if (dpOrderDate2.SelectedDate != null)
+            date2 = dpOrderDate2.SelectedDate.Value;
+            
+            //date1 = DateTime.Parse("2005-05-31");
+            //date2 = DateTime.Now;
+            
+            OrdersBetweenDates = daoManager.OrdersBetweenDates(date1, date2);
+            dgOrdersBetweenDates.DataContext = this;
+            dgOrdersBetweenDates.ItemsSource = OrdersBetweenDates;
         }
     }
 }

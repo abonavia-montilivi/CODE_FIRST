@@ -108,8 +108,8 @@
         <TabItem Header="PopularProducts">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -117,15 +117,16 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgPopularProducts"
-                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                <TextBlock Text="Productes Populars"/>
+                <DataGrid Grid.Row="1" Grid.ColumnSpan="4" Name="dgPopularProducts"
+                                  ItemsSource="{Binding PopularProducts}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding ProductCode, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding ProductName, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding QuantityInStock, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding BuyPrice, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="MSRP" Binding="{Binding MSRP, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -133,24 +134,21 @@
         <TabItem Header="ProductsPerOrder">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+                <TextBlock Text="Productes X Ordres"/>
+                <ComboBox Grid.Row="1" VerticalAlignment="Center" Name="cmbOrders" SelectionChanged="cmbOrders_SelectionChanged"/>
                 <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgProductsPerOrder"
-                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  ItemsSource="{Binding ProductsPerOrder}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding ProductCode, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding ProductName, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding QuantityInStock, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding BuyPrice, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="MSRP" Binding="{Binding MSRP, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -158,24 +156,29 @@
         <TabItem Header="OrdersBetweenDates">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgOrdersBetweenDates"
-                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                <TextBlock Grid.ColumnSpan="5" Text="Ordres entre dates"/>
+                <DatePicker Grid.Row="1" Grid.ColumnSpan="2" Name="dpOrderDate1"/>
+                <DatePicker Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Name="dpOrderDate2"/>
+                <Button x:Name="btnOrdersBetween" Grid.Column="2" Grid.Row="1" Content="SELECT" Click="btnOrdersBetween_Click"/>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="5" Name="dgOrdersBetweenDates"
+                                  ItemsSource="{Binding OrdersBetweenDates}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding OrderNumber, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Order Date" Binding="{Binding OrderDate, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Comments Language" Binding="{Binding Comments, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -183,8 +186,8 @@
         <TabItem Header="Top10MostExpensiveProducts">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -192,15 +195,16 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgTop10MostExpensiveProducts"
-                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                <TextBlock Text="Top 10 Productes" Grid.ColumnSpan="4"/>
+                <DataGrid Grid.Row="1" Grid.ColumnSpan="4" Name="dgTop10MostExpensiveProducts"
+                                  ItemsSource="{Binding Top10MostExpensiveProducts}" AutoGenerateColumns="False"
                                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
-                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding ProductCode, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding ProductName, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding QuantityInStock, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding BuyPrice, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="MSRP" Binding="{Binding MSRP, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
