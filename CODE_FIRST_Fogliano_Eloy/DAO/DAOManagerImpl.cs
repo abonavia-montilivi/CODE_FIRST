@@ -19,43 +19,8 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
         public DAOManagerImpl(MODEL.ClassicModelsDBContext context)
         {
             this.context = context;
-
-            //using (context)
-            //{
-
-            //    // Query customers from France order by credit limit
-            //    var customersWithName = context.Customers.Where(c => c.Country == "France").OrderBy(c => c.CreditLimit).ToList();
-
-            //    //filtering and sorting
-            //    var filteredProducts = context.Products.Where(p => p.QuantityInStock >= 2000 && p.MSRP < 100).OrderBy(p => p.ProductName).ToList();
-
-            //    //joining entities
-            //    var customerPayments = context.Customers
-            //        .Join(context.Payments,
-            //        customer => customer.CustomerNumber,
-            //        payment => payment.CustomerNumber,
-            //        (customer, payment) => new
-            //        {
-            //            CustomerName = customer.CustomerName,
-            //            PaymentAmount = payment.Amount
-
-            //        })
-            //        .ToList();
-
-            //    //agregation and grouping
-
-            //    var employeesPerOffice = context.Employees
-            //      .GroupBy(e => e.Office)
-            //      .Select(o => new
-            //      {
-            //          OfficeCode = o.Key,
-            //          EmployeeCount = o.Count()
-            //      })
-            //     .ToList();
-
-
-            //}
         }
+
         #region Eric
         public List<MODEL.Customer> CustomersFromFrance()
         {
@@ -89,8 +54,6 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                 .ToList();
         }
 
-
-
         public List<VIEWMODEL.ViewModelEmployeesPerOffice> EmployeesPerOffice()
         {
             var employeesWithOffice = context.Employees
@@ -99,7 +62,7 @@ namespace CODE_FIRST_Fogliano_Eloy.DAO
                 e => e.OfficeKey,
                 o => o.OfficeCode,
                 (e, o) => new { Employee = e, Office = o })
-            .ToList(); // Traer los datos a la memoria
+            .ToList();
 
             var employeesPerOffice = employeesWithOffice
                 .GroupBy(eo => eo.Office)
