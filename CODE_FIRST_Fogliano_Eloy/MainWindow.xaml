@@ -6,6 +6,306 @@
         xmlns:local="clr-namespace:CODE_FIRST_Fogliano_Eloy"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-    </Grid>
+    <TabControl>
+        <TabItem Header="CustomersFromFrance">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgCustomersFromFrance"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="ProductsByQuantityAndMsrp">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgProductsByQuantityAndMsrp"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="PaymentsPerCustomer">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgPaymentsPerCustomer"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="EmployeesPerOffice">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgEmployeesPerOffice"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="PopularProducts">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgPopularProducts"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="ProductsPerOrder">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgProductsPerOrder"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="OrdersBetweenDates">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgOrdersBetweenDates"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Top10MostExpensiveProducts">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgTop10MostExpensiveProducts"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="EmployeesPerBoss">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgEmployeesPerBoss"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="ProductsForEachProductLine">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgProductsForEachProductLine"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="AllProductsBoughtByACustomer">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgAllProductsBoughtByACustomer"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="BestSellerEmployees">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="3" Grid.ColumnSpan="4" Name="dgBestSellerEmployees"
+                                  ItemsSource="{Binding ShortFilms}" AutoGenerateColumns="False"
+                                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="ShortFilmId" Header="Id" Binding="{Binding FilmId, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmTitle" Header="Title" Binding="{Binding Title, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmReleaseYear" Header="Release Year" Binding="{Binding ReleaseYear, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmOriginalLanguage" Header="Original Language" Binding="{Binding OriginalLanguage, Mode=TwoWay}"/>
+                        <DataGridTextColumn x:Name="ShortFilmLength" Header="Length" Binding="{Binding Length, Mode=TwoWay}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+    </TabControl>    
 </Window>
