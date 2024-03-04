@@ -50,5 +50,10 @@ namespace CODE_FIRST_Fogliano_Eloy
 
 
         }
-    }
+
+		private void cmbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+	}
 }
